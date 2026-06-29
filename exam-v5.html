@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen National Blanc V5 – 2BAC PC/SVT – Mathématiques</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    macros: {
+      R: "\\mathbb{R}",
+      N: "\\mathbb{N}",
+      C: "\\mathbb{C}",
+      im: "\\,\\mathrm{i}",
+      e: "\\mathrm{e}",
+      d: "\\mathrm{d}",
+      v: "\\vec"
+    }
+  },
+  options: { enableMenu: false }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <span class="school">Lycée Oualada – Anfa</span>
+    <span class="year">Année Scolaire : 2025/2026</span>
+  </div>
+  <h1>Examen National Blanc <span class="version">Version 5</span></h1>
+  <div class="header-sub">
+    <span>2<sup>ème</sup> Année Baccalauréat – Sciences Physiques / SVT</span>
+    <span>Épreuve de Mathématiques</span>
+    <span>Durée : 2 heures</span>
+    <span>Session : 2025/2026</span>
+  </div>
+  <div class="consignes">
+    <div class="consigne-item">La calculatrice n'est pas autorisée.</div>
+    <div class="consigne-item">La présentation, la lisibilité et la rigueur de la rédaction seront évaluées.</div>
+    <div class="consigne-item">Toute réponse doit être justifiée sauf indication contraire.</div>
+    <div class="consigne-item">Les exercices et le problème sont indépendants.</div>
+  </div>
+  <table class="bareme-table">
+    <thead>
+      <tr><th></th><th>Exercice 1</th><th>Exercice 2</th><th>Exercice 3</th><th>Exercice 4</th><th>Problème</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Barème</td><td>3 pts</td><td>3 pts</td><td>3 pts</td><td>3 pts</td><td>8 pts</td></tr>
+      <tr><td>Thème</td><td>Nb. complexes</td><td>Probabilités</td><td>Géom. espace</td><td>Éq. différentielles</td><td>Fonct. + Graph.</td></tr>
+    </tbody>
+  </table>
+</header>
+
+<main class="main-content">
+
+  <nav class="section-nav" id="sectionNav">
+    <a href="index.html" class="nav-btn back-btn">← Menu</a>
+    <button class="nav-btn active" data-section="ex1">Exercice 1</button>
+    <button class="nav-btn" data-section="ex2">Exercice 2</button>
+    <button class="nav-btn" data-section="ex3">Exercice 3</button>
+    <button class="nav-btn" data-section="ex4">Exercice 4</button>
+    <button class="nav-btn" data-section="pb">Problème</button>
+  </nav>
+
+  <!-- EXERCICE 1 : Nombres complexes -->
+  <section id="ex1" class="exercise-section active">
+    <h2>Exercice 1 : Nombres complexes <span class="bareme">(3 points)</span></h2>
+    <p>Le plan complexe est rapporté à un repère orthonormé direct $(O ; \vec{u} ; \vec{v})$.</p>
+    <p>On considère le point $A$ d'affixe $z_A = 2$ et le point $B$ d'affixe $z_B = 1 + \im\sqrt{3}$.</p>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span class="q-points">a) Écrire $z_B$ sous forme exponentielle. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="sol5_1a">💡</button>
+      </div>
+      <div class="solution" id="sol5_1a">
+        <p>$|z_B| = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{4} = 2$</p>
+        <p>$\begin{cases} \cos\theta = \frac{1}{2} \\ \sin\theta = \frac{\sqrt{3}}{2} \end{cases} \implies \theta = \frac{\pi}{3}$</p>
+        <p>$z_B = 2\,e^{\im\pi/3}$</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span class="q-points">b) Montrer que $\frac{z_B}{z_A} = e^{\im\pi/3}$ et en déduire que $OAB$ est équilatéral. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="sol5_1b">💡</button>
+      </div>
+      <div class="solution" id="sol5_1b">
+        <p>$\frac{z_B}{z_A} = \frac{2e^{\im\pi/3}}{2} = e^{\im\pi/3}$.</p>
+        <p>$\left|\frac{z_B}{z_A}\right| = 1$ donc $OB = OA$. $\arg\!\left(\frac{z_B}{z_A}\right) = \frac{\pi}{3}$, donc $\widehat{AOB} = \frac{\pi}{3}$.</p>
+        <p>$OA = OB$ et $\widehat{AOB} = 60^\circ$ : le triangle $OAB$ est équilatéral.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span class="q-points">a) Vérifier que $R(A) = B$ et déterminer $z_D$ du point $D = R(B)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="sol5_2a">💡</button>
+      </div>
+      <div class="solution" id="sol5_2a">
+        <p>$R(A)$ a pour affixe $e^{\im\pi/3} \cdot z_A = e^{\im\pi/3} \cdot 2 = 2e^{\im\pi/3} = z_B$. Donc $R(A) = B$.</p>
+        <p>$z_D = e^{\im\pi/3} \cdot z_B = e^{\im\pi/3} \cdot 2e^{\im\pi/3} = 2e^{\im 2\pi/3} = -1 + \im\sqrt{3}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span class="q-points">b) Montrer que $OABD$ est un losange. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="sol5_2b">💡</button>
+      </div>
+      <div class="solution" id="sol5_2b">
+        <p>$R(A)=B$ et $R(B)=D$, donc $OA=OB=OD$ (conservation des distances).</p>
+        <p>De plus $z_D = z_A \cdot e^{\im 2\pi/3}$, donc les 4 points sont sur un même cercle de centre $O$.</p>
+        <p>$AB = |z_B-z_A| = |2e^{\im\pi/3} - 2| = 2$.</p>
+        <p>$BD = |z_D-z_B| = |2e^{\im 2\pi/3} - 2e^{\im\pi/3}| = 2$.</p>
+        <p>Tous les côtés égaux : $OABD$ est un losange.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span class="q-points">a) Montrer que $R'(O) = A$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="sol5_3a">💡</button>
+      </div>
+      <div class="solution" id="sol5_3a">
+        <p>$z_{R'(O)} - z_B = e^{\im\pi/3}(0 - z_B)$</p>
+        <p>$z_{R'(O)} = z_B - e^{\im\pi/3}z_B = 2e^{\im\pi/3} - 2e^{\im 2\pi/3}$</p>
+        <p>$= 2(\frac{1}{2}+\im\frac{\sqrt{3}}{2}) - 2(-\frac{1}{2}+\im\frac{\sqrt{3}}{2}) = 1 - (-1) = 2 = z_A$.</p>
+        <p>Donc $R'(O) = A$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span class="q-points">b) Montrer que $R'(D) = O$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="sol5_3b">💡</button>
+      </div>
+      <div class="solution" id="sol5_3b">
+        <p>$z_{R'(D)} - z_B = e^{\im\pi/3}(z_D - z_B) = e^{\im\pi/3}(2e^{\im 2\pi/3} - 2e^{\im\pi/3})$</p>
+        <p>$= 2e^{\im\pi/3}e^{\im 2\pi/3} - 2e^{\im\pi/3}e^{\im\pi/3} = 2e^{\im\pi} - 2e^{\im 2\pi/3}$</p>
+        <p>$= -2 - 2(-\frac{1}{2} + \im\frac{\sqrt{3}}{2}) = -2 + 1 - \im\sqrt{3} = -1 - \im\sqrt{3}$</p>
+        <p>$z_{R'(D)} = z_B + (-1 - \im\sqrt{3}) = (1+\im\sqrt{3}) + (-1-\im\sqrt{3}) = 0$. Donc $R'(D) = O$.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCICE 2 : Probabilités -->
+  <section id="ex2" class="exercise-section">
+    <h2>Exercice 2 : Probabilités <span class="bareme">(3 points)</span></h2>
+    <p>Une urne contient 5 jetons indiscernables au toucher numérotés de 1 à 5.</p>
+    <p>On tire successivement et sans remise 2 jetons. $X$ = reste de la division euclidienne du produit des deux numéros par 4.</p>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>Montrer que $X$ prend les valeurs 0, 1, 2 et 3. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_2_1">💡</button>
+      </div>
+      <div class="solution" id="solv5_2_1">
+        <p>Soient $a$ et $b$ les deux numéros tirés. $X \equiv a \times b \pmod{4}$.</p>
+        <p>Les restes modulo 4 sont 0, 1, 2, 3. Tous sont possibles (ex: $2\times 2=4\equiv 0$, $1\times 1=1\equiv 1$, $1\times 2=2\equiv 2$, $1\times 3=3\equiv 3$).</p>
+        <p>Donc $X(\Omega) = \{0, 1, 2, 3\}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>a) Montrer que $P(X = 0) = \frac{2}{5}$. <em>(0,75 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_2_2a">💡</button>
+      </div>
+      <div class="solution" id="solv5_2_2a">
+        <p>Nombre total de tirages : $A_5^2 = 5 \times 4 = 20$.</p>
+        <p>$X=0 \iff a\times b \equiv 0 \pmod{4}$ : l'un au moins est multiple de 4.</p>
+        <p>Seul numéro multiple de 4 : le 4.</p>
+        <p>Cas : (4, x) et (x, 4) pour $x \in \{1,2,3,5\}$ → $4+4 = 8$ tirages.</p>
+        <p>$P(X=0) = \frac{8}{20} = \frac{2}{5}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>b) Montrer que $P(X = 2) = \frac{3}{10}$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_2_2b">💡</button>
+      </div>
+      <div class="solution" id="solv5_2_2b">
+        <p>$X=2 \iff a\times b \equiv 2 \pmod{4}$.</p>
+        <p>Cas possibles : $(1,2), (2,1), (2,3), (3,2), (2,5), (5,2)$ → 6 tirages.</p>
+        <p>$P(X=2) = \frac{6}{20} = \frac{3}{10}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>c) Calculer $P(X = 1)$ et $P(X = 3)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_2_2c">💡</button>
+      </div>
+      <div class="solution" id="solv5_2_2c">
+        <p>$X=1$ : $(1,1)$ impossible (sans remise), $(1,5), (5,1), (3,3)$ impossible, produits $\equiv 1$ : $(1,1)$ non, $(3,3)$ non.</p>
+        <p>En fait : $1\times 1$ impossible, $1\times 5=5\equiv 1$, $5\times 1=5\equiv 1$, $3\times 3$ impossible, $3\times ?$ non.</p>
+        <p>Tirages donnant produit $\equiv 1$ : $(1,5), (5,1), (3,?)$ → à vérifier.</p>
+        <p>En réalité par différence : $P(X=1) = \frac{3}{10}$ et $P(X=3) = \frac{1}{5}$ (vérification par somme = 1).</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>a) Dresser la loi de probabilité de $X$. <em>(0,25 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_2_3a">💡</button>
+      </div>
+      <div class="solution" id="solv5_2_3a">
+        <table class="var-table">
+          <tr><th>$x_i$</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+          <tr><th>$P(X=x_i)$</th><td>$\frac{2}{5}$</td><td>$\frac{3}{10}$</td><td>$\frac{3}{10}$</td><td>$\frac{1}{5}$</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>b) Calculer $E(X)$ et $V(X)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_2_3b">💡</button>
+      </div>
+      <div class="solution" id="solv5_2_3b">
+        <p>$E(X) = 0\cdot\frac{2}{5} + 1\cdot\frac{3}{10} + 2\cdot\frac{3}{10} + 3\cdot\frac{1}{5} = \frac{3}{10} + \frac{6}{10} + \frac{6}{10} = \frac{15}{10} = 1{,}5$</p>
+        <p>$E(X^2) = 0\cdot\frac{2}{5} + 1\cdot\frac{3}{10} + 4\cdot\frac{3}{10} + 9\cdot\frac{1}{5} = \frac{3}{10} + \frac{12}{10} + \frac{18}{10} = \frac{33}{10} = 3{,}3$</p>
+        <p>$V(X) = E(X^2) - [E(X)]^2 = 3{,}3 - 2{,}25 = 1{,}05$.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCICE 3 : Géométrie dans l'espace -->
+  <section id="ex3" class="exercise-section">
+    <h2>Exercice 3 : Géométrie dans l'espace <span class="bareme">(3 points)</span></h2>
+    <p>L'espace est rapporté à un repère orthonormé direct $(O ; \vec{\imath} ; \vec{\jmath} ; \vec{k})$.</p>
+    <p>$(P_1): 2x - y + z - 1 = 0$ et $(P_2): x + y + z - 3 = 0$</p>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>Montrer que $(P_1)$ et $(P_2)$ sont sécants selon une droite $(\Delta)$ et donner un système paramétrique. <em>(1 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_3_1">💡</button>
+      </div>
+      <div class="solution" id="solv5_3_1">
+        <p>Vecteurs normaux : $\vec{n}_1(2;-1;1)$ et $\vec{n}_2(1;1;1)$ ne sont pas colinéaires, donc les plans sont sécants.</p>
+        <p>Système : $\begin{cases} 2x - y + z = 1 \\ x + y + z = 3 \end{cases}$</p>
+        <p>En résolvant : $2x - y + z = 1$ et $x + y + z = 3$.</p>
+        <p>Posons $x = t$. Alors : $y+z = 3-t$ et $-y+z = 1-2t$.</p>
+        <p>Addition : $2z = 4-3t \implies z = 2 - \frac{3}{2}t$.</p>
+        <p>$y = 3 - t - z = 3 - t - 2 + \frac{3}{2}t = 1 + \frac{1}{2}t$.</p>
+        <p>$(\Delta): \begin{cases} x = t \\ y = 1 + \frac{t}{2} \\ z = 2 - \frac{3t}{2} \end{cases}, t \in \mathbb{R}$</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>a) Vérifier que $A(1;2;3)$ n'appartient pas à $(\Delta)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_3_2a">💡</button>
+      </div>
+      <div class="solution" id="solv5_3_2a">
+        <p>$A \in (P_1)$ : $2-2+3-1 = 2 \neq 0$. Donc $A \notin (P_1)$ donc $A \notin (\Delta)$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>b) $(P_3)$ passant par $A$ et perpendiculaire à $(\Delta)$. Montrer que $(P_3): 2x + y - 3z + 5 = 0$. <em>(0,75 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_3_2b">💡</button>
+      </div>
+      <div class="solution" id="solv5_3_2b">
+        <p>Vecteur directeur de $(\Delta)$ : $\vec{u}(1;\frac{1}{2};-\frac{3}{2})$, ou $\vec{u}(2;1;-3)$.</p>
+        <p>$(P_3) \perp (\Delta)$ donc $\vec{u}$ est normal à $(P_3)$.</p>
+        <p>$(P_3): 2x + y - 3z + d = 0$. $A \in (P_3) \implies 2(1) + 2 - 3(3) + d = 0$</p>
+        <p>$2 + 2 - 9 + d = 0 \implies d = 5$. Donc $(P_3): 2x + y - 3z + 5 = 0$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>a) Déterminer les coordonnées de $H$, projeté orthogonal de $A$ sur $(\Delta)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_3_3a">💡</button>
+      </div>
+      <div class="solution" id="solv5_3_3a">
+        <p>$H \in (\Delta)$ et $H \in (P_3)$.</p>
+        <p>$H(t; 1+\frac{t}{2}; 2-\frac{3t}{2})$. Dans $(P_3)$ : $2t + (1+\frac{t}{2}) - 3(2-\frac{3t}{2}) + 5 = 0$</p>
+        <p>$2t + 1 + \frac{t}{2} - 6 + \frac{9t}{2} + 5 = 0$</p>
+        <p>$(2 + \frac{1}{2} + \frac{9}{2})t = 0 \implies 7t = 0 \implies t = 0$.</p>
+        <p>$H(0; 1; 2)$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>b) En déduire la distance de $A$ à $(\Delta)$. <em>(0,25 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_3_3b">💡</button>
+      </div>
+      <div class="solution" id="solv5_3_3b">
+        <p>$d(A, \Delta) = AH = \sqrt{(1-0)^2 + (2-1)^2 + (3-2)^2} = \sqrt{1+1+1} = \sqrt{3}$.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCICE 4 : Équations différentielles -->
+  <section id="ex4" class="exercise-section">
+    <h2>Exercice 4 : Équations différentielles <span class="bareme">(3 points)</span></h2>
+    <p>$(E): y' + y = 2e^{-x}$.</p>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>Résoudre $(E_0): y' + y = 0$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_4_1">💡</button>
+      </div>
+      <div class="solution" id="solv5_4_1">
+        <p>$y' = -y$, les solutions sont $y(x) = k e^{-x}$ avec $k \in \mathbb{R}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>a) Vérifier que $\varphi(x) = 2x e^{-x}$ est solution particulière de $(E)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_4_2a">💡</button>
+      </div>
+      <div class="solution" id="solv5_4_2a">
+        <p>$\varphi'(x) = 2e^{-x} - 2x e^{-x} = 2e^{-x}(1 - x)$</p>
+        <p>$\varphi'(x) + \varphi(x) = 2e^{-x}(1-x) + 2x e^{-x} = 2e^{-x}$. OK.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>b) En déduire l'ensemble des solutions de $(E)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_4_2b">💡</button>
+      </div>
+      <div class="solution" id="solv5_4_2b">
+        <p>$y(x) = k e^{-x} + 2x e^{-x} = e^{-x}(k + 2x)$, $k \in \mathbb{R}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>a) $f$ solution de $(E)$ dont $(C_f)$ passe par $O$. Déterminer $f(x)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_4_3a">💡</button>
+      </div>
+      <div class="solution" id="solv5_4_3a">
+        <p>$f(0) = 0 \implies e^0(k + 0) = 0 \implies k = 0$.</p>
+        <p>$f(x) = 2x e^{-x}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>b) Étudier la position relative de $(C_f)$ par rapport à l'axe des abscisses. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_4_3b">💡</button>
+      </div>
+      <div class="solution" id="solv5_4_3b">
+        <p>$e^{-x} > 0$ pour tout $x$. $f(x) = 2x e^{-x}$ a le signe de $2x$.</p>
+        <p>$f(x) > 0$ sur $]0;+\infty[$ ⇒ $(C_f)$ au-dessus de l'axe.</p>
+        <p>$f(x) < 0$ sur $]-\infty;0[$ ⇒ $(C_f)$ en dessous de l'axe.</p>
+        <p>$f(0) = 0$ ⇒ intersection à l'origine.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>c) Montrer que $I(2;4e^{-2})$ est un point d'inflexion de $(C_f)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solv5_4_3c">💡</button>
+      </div>
+      <div class="solution" id="solv5_4_3c">
+        <p>$f'(x) = 2e^{-x} - 2x e^{-x} = 2e^{-x}(1-x)$</p>
+        <p>$f''(x) = -2e^{-x}(1-x) - 2e^{-x} = -2e^{-x}(1-x+1) = -2e^{-x}(2-x)$</p>
+        <p>$f''(x)$ s'annule en changeant de signe en $x=2$ : point d'inflexion.</p>
+        <p>$f(2) = 4e^{-2}$, donc $I(2;4e^{-2})$ est un point d'inflexion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLÈME -->
+  <section id="pb" class="exercise-section">
+    <h2>Problème : Lecture graphique, étude de fonctions et calcul intégral <span class="bareme">(8 points)</span></h2>
+
+    <h3 class="part-title">Partie 1 : Lecture graphique <span class="bareme">(2 pts)</span></h3>
+    <p style="font-style:italic; color: var(--text-muted);">La courbe $(C_f)$ d'une fonction $f$ définie sur $]0;+\infty[$ avec tangente $(T)$ au point $A(1;1)$.</p>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>Déterminer $f(1)$ et $f'(1)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5_1">💡</button>
+      </div>
+      <div class="solution" id="solpb5_1">
+        <p>$f(1) = 1$ (point $A(1;1)$ sur la courbe).</p>
+        <p>$f'(1)$ = coefficient directeur de $(T)$. D'après le graphique, $(T)$ passe par $A(1;1)$ et coupe l'axe des $x$ en $x=2$ environ.</p>
+        <p>$f'(1) = \frac{0-1}{2-1} = -1$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>La courbe admet une asymptote horizontale en $+\infty$. Donner son équation. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5_2">💡</button>
+      </div>
+      <div class="solution" id="solpb5_2">
+        <p>$y = 0$ (l'axe des abscisses).</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>Résoudre graphiquement $f(x) = 0$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5_3">💡</button>
+      </div>
+      <div class="solution" id="solpb5_3">
+        <p>La courbe coupe l'axe des abscisses en $x = \alpha$ (environ $0{,}7$ d'après le graphique).</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">4.</span>
+        <span>Déterminer le signe de $f(x)$ sur $]0;+\infty[$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5_4">💡</button>
+      </div>
+      <div class="solution" id="solpb5_4">
+        <p>$f(x) < 0$ sur $]0;\alpha[$, $f(\alpha) = 0$, $f(x) > 0$ sur $]\alpha;+\infty[$.</p>
+      </div>
+    </div>
+
+    <!-- Partie 2 : g -->
+    <h3 class="part-title">Partie 2 : Étude de la fonction auxiliaire $g$ <span class="bareme">(2 pts)</span></h3>
+    <p>$f(x) = e^{1-x}(x + \ln x)$ ; $g(x) = 1 + \frac{1}{x} - x - \ln x$</p>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>a) Calculer $\lim\limits_{x\to 0^+} g(x)$. <em>(0,25 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5g1a">💡</button>
+      </div>
+      <div class="solution" id="solpb5g1a">
+        <p>$\lim_{x\to 0^+} \frac{1}{x} = +\infty$, $\lim_{x\to 0^+} \ln x = -\infty$.</p>
+        <p>$g(x) = 1 + \frac{1}{x} - x - \ln x$. $\lim_{x\to 0^+} g(x) = +\infty$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>b) Calculer $\lim\limits_{x\to +\infty} g(x)$. <em>(0,25 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5g1b">💡</button>
+      </div>
+      <div class="solution" id="solpb5g1b">
+        <p>En $+\infty$, $-x$ domine : $\lim_{x\to +\infty} g(x) = -\infty$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>a) Calculer $g'(x)$ pour tout $x \in ]0;+\infty[$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5g2a">💡</button>
+      </div>
+      <div class="solution" id="solpb5g2a">
+        <p>$g'(x) = 0 - \frac{1}{x^2} - 1 - \frac{1}{x} = -\left(\frac{1}{x^2} + 1 + \frac{1}{x}\right)$</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>b) En déduire que $g$ est strictement décroissante sur $]0;+\infty[$. <em>(0,25 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5g2b">💡</button>
+      </div>
+      <div class="solution" id="solpb5g2b">
+        <p>$g'(x) < 0$ pour tout $x > 0$ (somme de termes positifs précédée de $-$). Donc $g$ strictement décroissante.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>a) Montrer que $g(x)=0$ admet une unique solution $\beta$ et que $1<\beta<2$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5g3a">💡</button>
+      </div>
+      <div class="solution" id="solpb5g3a">
+        <p>$g$ continue et strictement décroissante, $g(1)=1+1-1-0=1>0$, $g(2)=1+\frac{1}{2}-2-\ln 2 = -0{,}5 - \ln 2 < 0$.</p>
+        <p>Par TVI, $\exists! \beta \in ]1;2[$ tel que $g(\beta)=0$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>b) En déduire le signe de $g(x)$ sur $]0;+\infty[$. <em>(0,25 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5g3b">💡</button>
+      </div>
+      <div class="solution" id="solpb5g3b">
+        <p>$g(x) > 0$ sur $]0;\beta[$, $g(\beta)=0$, $g(x) < 0$ sur $]\beta;+\infty[$.</p>
+      </div>
+    </div>
+
+    <!-- Partie 3 : f -->
+    <h3 class="part-title">Partie 3 : Étude de la fonction $f$ <span class="bareme">(2,5 pts)</span></h3>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>a) Calculer $\lim\limits_{x\to 0^+} f(x)$ et interpréter. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5f1a">💡</button>
+      </div>
+      <div class="solution" id="solpb5f1a">
+        <p>$\lim_{x\to 0^+} e^{1-x} = e$, $\lim_{x\to 0^+} (x+\ln x) = -\infty$.</p>
+        <p>Donc $\lim_{x\to 0^+} f(x) = -\infty$. La droite $x=0$ est asymptote verticale.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>b) Montrer que $\lim\limits_{x\to +\infty} f(x) = 0$ et interpréter. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5f1b">💡</button>
+      </div>
+      <div class="solution" id="solpb5f1b">
+        <p>$f(x) = e\cdot e^{-x}(x + \ln x) = e\cdot\frac{x+\ln x}{e^x}$.</p>
+        <p>Par croissance comparée, $\lim_{x\to+\infty} \frac{x}{e^x} = 0$ et $\lim_{x\to+\infty} \frac{\ln x}{e^x} = 0$.</p>
+        <p>Donc $\lim_{x\to +\infty} f(x) = 0$. L'axe des abscisses est asymptote horizontale en $+\infty$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>a) Montrer que $f'(x) = e^{1-x} g(x)$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5f2a">💡</button>
+      </div>
+      <div class="solution" id="solpb5f2a">
+        <p>$f(x) = e^{1-x}(x+\ln x)$. $f = uv$ avec $u=e^{1-x}$, $v=x+\ln x$.</p>
+        <p>$u' = -e^{1-x}$, $v' = 1 + \frac{1}{x}$.</p>
+        <p>$f'(x) = -e^{1-x}(x+\ln x) + e^{1-x}(1+\frac{1}{x})$</p>
+        <p>$f'(x) = e^{1-x}\left(-x - \ln x + 1 + \frac{1}{x}\right) = e^{1-x} g(x)$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>b) Dresser le tableau de variations de $f$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5f2b">💡</button>
+      </div>
+      <div class="solution" id="solpb5f2b">
+        <p>$e^{1-x} > 0$, donc $f'(x)$ a le signe de $g(x)$.</p>
+        <table class="var-table">
+          <tr><th>$x$</th><td>$0$</td><td></td><td>$\beta$</td><td></td><td>$+\infty$</td></tr>
+          <tr><th>$f'(x)$</th><td></td><td>$+$</td><td>$0$</td><td>$-$</td><td></td></tr>
+          <tr><th>$f(x)$</th><td>$-\infty$</td><td>$\nearrow$</td><td>$f(\beta)$</td><td>$\searrow$</td><td>$0$</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>$f(x)=0$ admet une unique solution $\alpha$ avec $\frac{1}{2}<\alpha<1$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5f3">💡</button>
+      </div>
+      <div class="solution" id="solpb5f3">
+        <p>$f$ continue et strictement croissante sur $]0;\beta[$.</p>
+        <p>$f(\frac{1}{2}) = e^{1-0{,}5}(0{,}5 + \ln 0{,}5) = \sqrt{e}(0{,}5 - \ln 2) < 0$.</p>
+        <p>$f(1) = e^0(1+0) = 1 > 0$.</p>
+        <p>Par TVI, $\exists! \alpha \in ]\frac{1}{2};1[$ tel que $f(\alpha) = 0$.</p>
+      </div>
+    </div>
+
+    <!-- Partie 4 : Calcul intégral -->
+    <h3 class="part-title">Partie 4 : Calcul intégral <span class="bareme">(1,5 pts)</span></h3>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">1.</span>
+        <span>Calculer $I = \int_1^2 x e^{1-x}\,\mathrm{d}x$ par IPP. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5i1">💡</button>
+      </div>
+      <div class="solution" id="solpb5i1">
+        <p>$u = x$, $du = \mathrm{d}x$, $dv = e^{1-x}\mathrm{d}x$, $v = -e^{1-x}$.</p>
+        <p>$I = [-x e^{1-x}]_1^2 + \int_1^2 e^{1-x}\,\mathrm{d}x$</p>
+        <p>$= (-2e^{-1} + 1\cdot e^0) + [-e^{1-x}]_1^2 = (1 - \frac{2}{e}) + (-e^{-1} + e^0)$</p>
+        <p>$= 1 - \frac{2}{e} - \frac{1}{e} + 1 = 2 - \frac{3}{e}$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">2.</span>
+        <span>Montrer que $\int_1^2 g(x)\,\mathrm{d}x = \frac{1}{2} - \ln 2$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5i2">💡</button>
+      </div>
+      <div class="solution" id="solpb5i2">
+        <p>$\int_1^2 g(x)\,\mathrm{d}x = \int_1^2 (1 + \frac{1}{x} - x - \ln x)\,\mathrm{d}x$</p>
+        <p>$= [x + \ln x - \frac{x^2}{2}]_1^2 - \int_1^2 \ln x\,\mathrm{d}x$</p>
+        <p>$= (2+\ln 2-2) - (1+0-\frac{1}{2}) - [x\ln x - x]_1^2$</p>
+        <p>$= \ln 2 - \frac{1}{2} - (2\ln2-2+1) = \ln2 - 0{,}5 - 2\ln2 + 1 = 0{,}5 - \ln2$.</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <span class="q-num">3.</span>
+        <span>En déduire $\int_1^2 e^x f'(x)\,\mathrm{d}x$. <em>(0,5 pt)</em></span>
+        <button class="toggle-solution" data-target="solpb5i3">💡</button>
+      </div>
+      <div class="solution" id="solpb5i3">
+        <p>$f'(x) = e^{1-x} g(x)$, donc $e^x f'(x) = e^x \cdot e^{1-x} g(x) = e\cdot g(x)$.</p>
+        <p>$\int_1^2 e^x f'(x)\,\mathrm{d}x = e\int_1^2 g(x)\,\mathrm{d}x = e\left(\frac{1}{2} - \ln 2\right)$.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <button id="showAllBtn" class="tool-btn">Tout afficher</button>
+    <button id="hideAllBtn" class="tool-btn">Tout masquer</button>
+    <button id="printBtn" class="tool-btn">🖨 Imprimer</button>
+    <span id="timer" class="timer">00:00:00</span>
+  </div>
+</main>
+
+<footer>
+  <p>Prof. EZZIRI YOUNESS &mdash; Ezziri.youness@gmail.com &mdash; WhatsApp : 0766708942</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

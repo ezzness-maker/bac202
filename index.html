@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examens Nationaux Blancs – Mathématiques – 2BAC PC/SVT</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Hub-specific overrides */
+.hub-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+.hub-title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+.hub-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+.exam-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+.exam-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: all var(--transition);
+  box-shadow: var(--shadow);
+}
+.exam-card:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+.exam-card .badge {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+}
+.badge-v2 { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+.badge-v5 { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+.exam-card .info { flex: 1; }
+.exam-card .info h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+.exam-card .info p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+.exam-card .arrow { color: var(--primary-light); font-size: 1.3rem; flex-shrink: 0; }
+.exam-card .duration {
+  display: inline-block;
+  background: #f0f4f8;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+</style>
+</head>
+<body>
+
+<div class="hub-container">
+  <h1 class="hub-title">📐 Examens Nationaux Blancs</h1>
+  <p class="hub-subtitle">Lycée Oualada – Anfa &bull; 2BAC PC/SVT &bull; 2025/2026</p>
+
+  <div class="exam-grid">
+    <a href="exam-v2.html" class="exam-card">
+      <div class="badge badge-v2">V2</div>
+      <div class="info">
+        <h3>Examen National Blanc — Version 2</h3>
+        <p>Nb. complexes • Probabilités • Géom. espace • Suites num. • Étude de fonctions</p>
+        <span class="duration">⏱ 3 heures</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="exam-v5.html" class="exam-card">
+      <div class="badge badge-v5">V5</div>
+      <div class="info">
+        <h3>Examen National Blanc — Version 5</h3>
+        <p>Nb. complexes • Probabilités • Géom. espace • Éq. différentielles • Fonctions + Graph.</p>
+        <span class="duration">⏱ 2 heures</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<footer style="border:none; margin-top:3rem;">
+  <p>Prof. EZZIRI YOUNESS &mdash; Ezziri.youness@gmail.com &mdash; WhatsApp : 0766708942</p>
+</footer>
+
+</body>
+</html>
