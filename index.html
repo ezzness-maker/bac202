@@ -4,7 +4,367 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cours & Examens Nationaux Blancs – Mathématiques – 2BAC PC/SVT</title>
-<link rel="stylesheet" href="styles.css">
+<style>
+/* ==== styles.css (inlined) ==== */
+/* === Reset & Base === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #1a5276;
+  --primary-light: #2980b9;
+  --accent: #e67e22;
+  --accent-light: #f39c12;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --text-muted: #7f8c8d;
+  --border: #d5dbdb;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --radius: 8px;
+  --transition: 0.2s ease;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* === Header === */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  max-width: 900px;
+  margin: 0 auto 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.header .version {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+}
+.header-sub {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  opacity: 0.9;
+}
+.header-sub span:not(:last-child)::after {
+  content: '•';
+  margin-left: 1.5rem;
+  opacity: 0.5;
+}
+
+/* Consignes */
+.consignes {
+  max-width: 800px;
+  margin: 1.2rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.consigne-item {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* Barème table */
+.bareme-table {
+  margin: 1.5rem auto 0;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.bareme-table th, .bareme-table td {
+  padding: 0.4rem 1rem;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* === Navigation === */
+.section-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.nav-btn {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition);
+  color: var(--text);
+}
+.nav-btn:hover { border-color: var(--primary-light); color: var(--primary); }
+.nav-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.nav-btn.back-btn {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.nav-btn.back-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* === Main Content === */
+.main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* Exercise sections */
+.exercise-section {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.exercise-section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.exercise-section h2 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  border-bottom: 3px solid var(--primary-light);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+.part-title {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin: 1.5rem 0 1rem;
+  padding-left: 0.5rem;
+  border-left: 4px solid var(--accent);
+}
+.bareme {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.formula {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
+  padding: 0.6rem;
+  background: #f0f4f8;
+  border-radius: var(--radius);
+}
+
+/* Questions */
+.question {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.q-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  cursor: default;
+  flex-wrap: wrap;
+}
+.q-num {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 1.8rem;
+}
+.q-points { flex: 1; }
+.q-points em { color: var(--text-muted); font-size: 0.85rem; }
+
+.toggle-solution {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform var(--transition);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.toggle-solution:hover { transform: scale(1.1); background: var(--accent-light); }
+.toggle-solution.open { transform: rotate(180deg); }
+
+.solution {
+  display: none;
+  padding: 0 1rem 0.8rem;
+  border-top: 1px solid var(--border);
+  background: #fafcfd;
+  font-size: 0.95rem;
+  line-height: 2;
+}
+.solution.show { display: block; }
+
+.solution p { margin: 0.4rem 0; }
+
+/* Variation table */
+.var-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+.var-table th, .var-table td {
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.5rem;
+  text-align: center;
+}
+.var-table th { background: var(--primary); color: #fff; }
+.var-table tr:last-child td { background: #eaf2f8; font-weight: 500; }
+
+/* Probability tree */
+.tree {
+  background: #f5f6fa;
+  padding: 0.8rem;
+  border-radius: var(--radius);
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* === Toolbar === */
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
+.tool-btn {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid var(--primary);
+  background: #fff;
+  color: var(--primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+.tool-btn:hover { background: var(--primary); color: #fff; }
+
+.timer {
+  font-family: 'Consolas', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 100px;
+  text-align: center;
+}
+.timer.warning { color: var(--accent); border-color: var(--accent); }
+.timer.danger { color: #c0392b; border-color: #c0392b; animation: pulse 1s infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* === Footer === */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+/* === Print === */
+@media print {
+  .section-nav, .toolbar, .toggle-solution, footer { display: none !important; }
+  .exercise-section { display: block !important; page-break-inside: avoid; }
+  .solution { display: block !important; }
+  .header { background: none; color: #000; box-shadow: none; padding: 0.5rem; }
+  .header h1 { font-size: 1.2rem; }
+  .bareme-table { border-color: #000; }
+  .bareme-table th, .bareme-table td { border-color: #000; color: #000; }
+  body { font-size: 12px; }
+  .main-content { max-width: 100%; padding: 0; }
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .header h1 { font-size: 1.2rem; }
+  .header-sub { gap: 0.8rem; font-size: 0.8rem; }
+  .header-sub span:not(:last-child)::after { content: none; }
+  .section-nav { gap: 0.3rem; }
+  .nav-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+  .main-content { padding: 1rem 0.5rem; }
+  .bareme-table { font-size: 0.7rem; }
+}
+
+</style>
 <style>
 /* Hub-specific overrides */
 .hub-container {
