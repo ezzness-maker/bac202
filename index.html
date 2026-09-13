@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Examens Nationaux Blancs – Mathématiques – 2BAC PC/SVT</title>
+<title>Cours & Examens Nationaux Blancs – Mathématiques – 2BAC PC/SVT</title>
 <link rel="stylesheet" href="styles.css">
 <style>
 /* Hub-specific overrides */
@@ -60,6 +60,16 @@
 }
 .badge-v2 { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
 .badge-v5 { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+.badge-cours { background: linear-gradient(135deg, #1e8449, #27ae60); }
+.section-label {
+  margin: 2.2rem 0 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  border-left: 5px solid var(--accent);
+  padding-left: 0.6rem;
+}
+.section-label:first-of-type { margin-top: 0.5rem; }
 .exam-card .info { flex: 1; }
 .exam-card .info h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
 .exam-card .info p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
@@ -77,9 +87,23 @@
 <body>
 
 <div class="hub-container">
-  <h1 class="hub-title">📐 Examens Nationaux Blancs</h1>
+  <h1 class="hub-title">📐 Mathématiques – 2BAC PC/SVT</h1>
   <p class="hub-subtitle">Lycée Oualada – Anfa &bull; 2BAC PC/SVT &bull; 2025/2026</p>
 
+  <h2 class="section-label">📘 Cours &amp; Activités</h2>
+  <div class="exam-grid">
+    <a href="cours-limites-continuite.html" class="exam-card">
+      <div class="badge badge-cours">C1</div>
+      <div class="info">
+        <h3>Limites et Continuité — Cours</h3>
+        <p>Continuité • Image d'un intervalle • T.V.I. • Fonction réciproque • Racine n<sup>ième</sup></p>
+        <span class="duration">📖 Cours &amp; activités de découverte + exercices</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <h2 class="section-label">📝 Examens Nationaux Blancs</h2>
   <div class="exam-grid">
     <a href="exam-v2.html" class="exam-card">
       <div class="badge badge-v2">V2</div>

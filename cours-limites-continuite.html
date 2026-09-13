@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limites et Continuité — Cours — 2BAC PC/SVT — Maths</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    macros: {
+      R: "\\mathbb{R}",
+      N: "\\mathbb{N}",
+      Z: "\\mathbb{Z}",
+      C: "\\mathbb{C}",
+      im: "\\,\\mathrm{i}",
+      e: "\\mathrm{e}",
+      d: "\\mathrm{d}",
+      v: "\\vec"
+    }
+  },
+  options: { enableMenu: false }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+/* ===== Course-specific styles ===== */
+.cours-wrap { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+/* Course nav */
+.cours-nav {
+  display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap;
+  padding: 0.7rem 0.6rem; position: sticky; top: 0; z-index: 200;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.cours-nav a {
+  padding: 0.35rem 0.8rem; border: 2px solid var(--border); background: var(--card-bg);
+  border-radius: var(--radius); color: var(--text); text-decoration: none;
+  font-size: 0.85rem; font-weight: 500; transition: all var(--transition); white-space: nowrap;
+}
+.cours-nav a:hover { border-color: var(--primary-light); color: var(--primary); }
+.cours-nav a.home { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.cours-nav a.home:hover { background: var(--accent); color: #fff; }
+
+/* Chapter & section headings */
+.chapter {
+  margin: 2.6rem 0 1.2rem; padding: 0.7rem 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff; border-radius: var(--radius); font-size: 1.25rem; font-weight: 700;
+  scroll-margin-top: 4rem;
+}
+.chapter .num { opacity: 0.75; margin-right: 0.5rem; }
+.section-h {
+  margin: 2rem 0 1rem; color: var(--primary); font-size: 1.1rem; font-weight: 700;
+  border-left: 5px solid var(--accent); padding-left: 0.6rem; scroll-margin-top: 4rem;
+}
+.section-h .num { color: var(--accent); margin-right: 0.4rem; }
+
+/* Boxes */
+.box { border-radius: var(--radius); margin: 1rem 0; overflow: hidden; box-shadow: var(--shadow); }
+.box > .box-title {
+  font-weight: 700; font-size: 0.95rem; padding: 0.45rem 0.9rem; color: #fff;
+  display: flex; align-items: center; gap: 0.45rem;
+}
+.box > .box-body { background: var(--card-bg); padding: 0.9rem 1.05rem; border: 1px solid var(--border); border-top: none; }
+.box-body > :first-child { margin-top: 0; }
+.box-body > :last-child { margin-bottom: 0; }
+.box-body p { margin: 0.45rem 0; }
+
+.box.activite > .box-title { background: #8e44ad; }
+.box.activite > .box-body { background: #faf6fd; }
+.box.definition > .box-title { background: var(--primary); }
+.box.definition > .box-body { background: #f4f9fd; }
+.box.propriete > .box-title { background: #1e8449; }
+.box.propriete > .box-body { background: #f2fbf5; }
+.box.theoreme > .box-title { background: #b9770e; }
+.box.theoreme > .box-body { background: #fdf8ee; }
+.box.remarque > .box-title { background: #5d6d7e; }
+.box.remarque > .box-body { background: #f7f9fa; }
+.box.attention > .box-title { background: #c0392b; }
+.box.attention > .box-body { background: #fdf3f2; }
+.box.exemple > .box-title { background: #17a2b8; }
+.box.exemple > .box-body { background: #f1fbfd; }
+.box.methode > .box-title { background: #6c3483; }
+.box.methode > .box-body { background: #f8f4fc; }
+.box.solution > .box-title { background: #2c3e50; }
+.box.solution > .box-body { background: #fbfcfd; }
+
+/* Activité objectif line */
+.objectif { color: var(--text-muted); font-size: 0.88rem; font-style: italic; }
+
+/* Answer lines */
+.reponse { margin: 1rem 0 1.4rem; }
+.reponse .cible {
+  display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--primary);
+  background: #eaf2f8; border: 1px dashed var(--primary-light); border-radius: 4px;
+  padding: 0.1rem 0.5rem; margin-bottom: 0.35rem;
+}
+.reponse .lines {
+  height: 5.4rem; border-radius: var(--radius);
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 1.55rem, var(--border) 1.55rem, var(--border) calc(1.55rem + 1px));
+  background-position: 0 1rem;
+}
+.reponse.tall .lines { height: 8rem; }
+
+/* Figures */
+figure.fig { margin: 1.1rem auto; text-align: center; }
+figure.fig img {
+  max-width: 100%; height: auto; border: 1px solid var(--border);
+  border-radius: var(--radius); background: #fff; padding: 4px;
+}
+figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; }
+
+/* Formula display */
+.formula { text-align: center; margin: 0.9rem 0; }
+
+/* Legend */
+.legende { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 0; }
+.legende span {
+  font-size: 0.78rem; font-weight: 600; color: #fff; padding: 0.25rem 0.7rem; border-radius: 20px;
+}
+.leg-activite { background: #8e44ad; }
+.leg-definition { background: var(--primary); }
+.leg-propriete { background: #1e8449; }
+.leg-theoreme { background: #b9770e; }
+.leg-remarque { background: #5d6d7e; }
+.leg-attention { background: #c0392b; }
+.leg-exemple { background: #17a2b8; }
+
+/* TOC */
+.toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.2rem; box-shadow: var(--shadow); }
+.toc h2 { font-size: 1rem; color: var(--primary); margin-bottom: 0.6rem; }
+.toc ol { margin: 0; padding-left: 1.2rem; }
+.toc ol ol { margin-top: 0.2rem; }
+.toc li { margin: 0.2rem 0; font-size: 0.9rem; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--primary-light); text-decoration: underline; }
+
+/* Lists inside boxes */
+.box-body ul, .box-body ol { margin: 0.4rem 0 0.4rem 1.2rem; }
+.box-body li { margin: 0.25rem 0; }
+.nolist { list-style: none; margin-left: 0 !important; }
+
+/* Toolbar */
+.cours-toolbar {
+  display: flex; justify-content: center; gap: 0.8rem; margin-top: 2.5rem;
+  padding: 1rem; background: var(--card-bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); flex-wrap: wrap;
+}
+.up-link { text-align: center; margin-top: 1.2rem; font-size: 0.9rem; }
+.up-link a { color: var(--primary-light); }
+
+@media print {
+  .cours-nav, .cours-toolbar, .up-link, footer { display: none !important; }
+  .chapter { background: none !important; color: #000 !important; border-bottom: 2px solid #000; }
+  .box > .box-title { color: #000 !important; background: none !important; border-bottom: 1px solid #999; }
+  .box > .box-body { background: #fff !important; }
+  figure.fig { page-break-inside: avoid; }
+  .reponse .lines { background-image: none; border-bottom: 1px solid #ccc; height: 4.5rem; }
+}
+@media (max-width: 640px) {
+  .cours-nav a { font-size: 0.75rem; padding: 0.3rem 0.55rem; }
+  .chapter { font-size: 1.05rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <span class="school">Lycée Oualada - Anfa</span>
+    <span class="year">Année Scolaire : 2025/2026</span>
+  </div>
+  <h1>Limites et Continuité <span class="version">Cours</span></h1>
+  <div class="header-sub">
+    <span>2<sup>ème</sup> Année Baccalauréat - Sciences PC / SVT</span>
+    <span>Cours &amp; Activités de découverte</span>
+    <span>Exercices corrigés</span>
+  </div>
+</header>
+
+<nav class="cours-nav">
+  <a class="home" href="index.html">← Accueil</a>
+  <a href="#chap1">1. Continuité</a>
+  <a href="#chap2">2. Image d'un intervalle</a>
+  <a href="#chap3">3. T.V.I.</a>
+  <a href="#chap4">4. Réciproque</a>
+  <a href="#chap5">5. Racine n<sup>ième</sup></a>
+</nav>
+
+<main class="cours-wrap">
+
+  <p><strong>Comment utiliser ce document ?</strong> Chaque notion est introduite par une activité de découverte : on observe la courbe, on conjecture, on calcule avant de lire la définition. Les activités se font par écrit, à la main ou à la calculatrice. Puis viennent le cours (définitions et propriétés encadrées) et les exercices d'application avec espace de réponse.</p>
+
+  <div class="legende">
+    <span class="leg-activite">Activité de découverte</span>
+    <span class="leg-definition">Définition</span>
+    <span class="leg-propriete">Propriété</span>
+    <span class="leg-theoreme">Théorème / Méthode</span>
+    <span class="leg-remarque">Remarque</span>
+    <span class="leg-attention">Attention</span>
+  </div>
+
+  <div class="toc" style="margin-top:1.4rem;">
+    <h2>Table des matières</h2>
+    <ol>
+      <li><a href="#chap1">Continuité d'une fonction numérique</a>
+        <ol>
+          <li><a href="#s11">Continuité en un point</a></li>
+          <li><a href="#s12">Continuité à droite – Continuité à gauche</a></li>
+          <li><a href="#s13">Continuité sur un intervalle</a></li>
+          <li><a href="#s14">Opérations sur les fonctions continues</a></li>
+          <li><a href="#s15">Continuité de la composée de deux fonctions</a></li>
+        </ol>
+      </li>
+      <li><a href="#chap2">Image d'un intervalle par une fonction continue</a>
+        <ol>
+          <li><a href="#s21">Image d'un segment par une fonction continue</a></li>
+          <li><a href="#s22">Image d'un intervalle par une fonction continue et strictement monotone</a></li>
+        </ol>
+      </li>
+      <li><a href="#chap3">Théorème des valeurs intermédiaires (TVI)</a>
+        <ol>
+          <li><a href="#s31">Théorème des valeurs intermédiaires</a></li>
+          <li><a href="#s32">Corollaire et unicité de la solution</a></li>
+          <li><a href="#s33">Principe de la méthode de dichotomie</a></li>
+        </ol>
+      </li>
+      <li><a href="#chap4">Fonction réciproque d'une fonction continue et strictement monotone</a>
+        <ol>
+          <li><a href="#s41">Théorème de la fonction réciproque</a></li>
+          <li><a href="#s42">Propriétés de la fonction réciproque</a></li>
+        </ol>
+      </li>
+      <li><a href="#chap5">Racine n<sup>ième</sup> et puissance rationnelle</a>
+        <ol>
+          <li><a href="#s51">Fonction racine n<sup>ième</sup></a></li>
+          <li><a href="#s52">Puissance rationnelle d'un nombre strictement positif</a></li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ================= CHAPITRE 1 ================= -->
+  <h2 class="chapter" id="chap1"><span class="num">1.</span>Continuité d'une fonction numérique</h2>
+
+  <h3 class="section-h" id="s11"><span class="num">1.1</span>Continuité en un point</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 1 – Continuité en un point (lecture graphique)</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir la notion de continuité en un point.</p>
+      <p>On considère la fonction $f$ dont la représentation graphique $\mathcal{C}_f$ est donnée ci-dessous :</p>
+      <figure class="fig">
+        <img src="assets/cours/fig-act1.png" alt="Courbe (Cf) d'une fonction f présentant une asymptote verticale en x = 1 ; deux points sont marqués en x = −1 et en x = 3, et la courbe présente un saut en x = −1.">
+        <figcaption>Représentation graphique de la fonction $f$.</figcaption>
+      </figure>
+      <ol>
+        <li>Calculer les limites suivantes : $\displaystyle\lim_{x\to+\infty}f(x)$ ; $\displaystyle\lim_{x\to-\infty}f(x)$ ; $\displaystyle\lim_{x\to 1^-}f(x)$ ; $\displaystyle\lim_{x\to 1^+}f(x)$.</li>
+        <li>
+          <ol type="a">
+            <li>Calculer : $\displaystyle\lim_{x\to-1^+}f(x)$, $\displaystyle\lim_{x\to-1^-}f(x)$ et $f(-1)$. Puis : la courbe $(\mathcal{C}_f)$ «&nbsp;passe-t-elle sans lever le crayon&nbsp;» au point d'abscisse $-1$ ? Autrement dit, $f$ est-elle continue en $-1$ ?</li>
+            <li>Calculer $\displaystyle\lim_{x\to 3}f(x)$ et $f(3)$. Que se passe-t-il en $x_0=3$ ? Comparer $\displaystyle\lim_{x\to 3}f(x)$ et $f(3)$.</li>
+          </ol>
+        </li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box definition">
+    <div class="box-title">■ Définition</div>
+    <div class="box-body">
+      <p>Soit $f$ une fonction définie sur un intervalle ouvert centré en un point $x_0$. On dit que la fonction $f$ est <strong>continue au point $x_0$</strong> si :</p>
+      <div class="formula">$$\lim_{x\to x_0} f(x) = f(x_0).$$</div>
+      <figure class="fig">
+        <img src="assets/cours/fig-def-p3.png" alt="Deux graphiques côte à côte : à gauche f est continue en x₀, la courbe passe par le point (x₀, f(x₀)) ; à droite f n'est pas continue en x₀, la courbe présente une interruption avec un point isolé (x₀, f(x₀)).">
+        <figcaption>À gauche : $f$ continue en $x_0$ &nbsp;|&nbsp; à droite : $f$ non continue en $x_0$.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="box remarque">
+    <div class="box-title">▲ Remarque</div>
+    <div class="box-body">
+      <p>Si $f$ est définie au point $x_0$ et n'admet pas de limite en $x_0$, ou si sa limite en $x_0$ est infinie, on dit que $f$ est <strong>discontinue</strong> au point $x_0$.</p>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction numérique définie par :</p>
+      <div class="formula">$$f(x)=\begin{cases}\dfrac{\sqrt{x^2+4}-2}{x} &amp; \text{si } x\neq 0\\[6pt] 0 &amp; \text{si } x=0\end{cases}$$</div>
+      <p>Étudier la continuité de $f$ au point $x_0=0$.</p>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 2 – Étudier la continuité de $g$ en 3</div>
+    <div class="box-body">
+      <p>Soit $g$ la fonction numérique définie par :</p>
+      <div class="formula">$$g(x)=\begin{cases}\dfrac{x^2-9}{x-3} &amp; \text{si } x\neq 3\\[6pt] 5 &amp; \text{si } x=3\end{cases}$$</div>
+      <p>Étudier la continuité de $g$ au point $x_0=3$.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s12"><span class="num">1.2</span>Continuité à droite – Continuité à gauche</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 3 – Continuité à droite, continuité à gauche</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Comprendre la continuité unilatérale.</p>
+      <p>On considère la fonction $f$ définie par :</p>
+      <div class="formula">$$f(x)=\begin{cases}x+2 &amp; \text{si } x\leq 1\\ x^2 &amp; \text{si } x&gt;1\end{cases}$$</div>
+      <ol>
+        <li>Calculer $f(1)$.</li>
+        <li>Calculer $\displaystyle\lim_{\substack{x\to 1\\ x&lt;1}}f(x)$ et $\displaystyle\lim_{\substack{x\to 1\\ x&gt;1}}f(x)$.</li>
+        <li>La fonction $f$ est-elle continue en $1$ ? continue à gauche ? continue à droite ?</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box definition">
+    <div class="box-title">■ Définition</div>
+    <div class="box-body">
+      <ol>
+        <li>Soit $f$ une fonction définie sur un intervalle de la forme $[x_0,\,x_0+r[$ (où $r\in\R_+^*$). On dit que $f$ est <strong>continue à droite en $x_0$</strong> si :
+          <div class="formula">$$\lim_{\substack{x\to x_0\\ x&gt;x_0}} f(x)=f(x_0).$$</div>
+        </li>
+        <li>Soit $f$ une fonction définie sur un intervalle de la forme $]x_0-r,\,x_0]$ (où $r\in\R_+^*$). On dit que $f$ est <strong>continue à gauche en $x_0$</strong> si :
+          <div class="formula">$$\lim_{\substack{x\to x_0\\ x&lt;x_0}} f(x)=f(x_0).$$</div>
+        </li>
+      </ol>
+      <figure class="fig">
+        <img src="assets/cours/fig-unilat-p4.png" alt="Deux graphiques : à gauche f est continue à droite en x₀ (la branche de droite part du point plein (x₀, f(x₀))) ; à droite f est continue à gauche en x₀ (la branche de gauche aboutit au point plein (x₀, f(x₀))).">
+        <figcaption>Continuité à droite et continuité à gauche en $x_0$.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Une fonction numérique $f$ est continue au point $x_0$ si et seulement si elle est continue à droite et à gauche au point $x_0$. En d'autres termes :</p>
+      <div class="formula">$$\big(f \text{ est continue en } x_0\big) \iff \lim_{\substack{x\to x_0\\ x&lt;x_0}} f(x)=\lim_{\substack{x\to x_0\\ x&gt;x_0}} f(x)=f(x_0).$$</div>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction numérique définie par :</p>
+      <div class="formula">$$f(x)=\begin{cases}4-x^2 &amp; \text{si } x\leq 0\\[6pt] \dfrac{x^2-4}{2x+1} &amp; \text{si } x&gt;0\end{cases}$$</div>
+      <p>Étudier la continuité à droite et à gauche de $f$ au point $x_0=0$.</p>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 4 – Étudier la continuité de $g$ en 4 (valeur absolue)</div>
+    <div class="box-body">
+      <p>Soit $g$ la fonction numérique définie par :</p>
+      <div class="formula">$$g(x)=\begin{cases}\dfrac{x^2-16}{|x-4|} &amp; \text{si } x\neq 4\\[6pt] 8 &amp; \text{si } x=4\end{cases}$$</div>
+      <p>Étudier la continuité à droite et à gauche de la fonction $g$ au point $x_0=4$.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s13"><span class="num">1.3</span>Continuité sur un intervalle</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 5 – Continuité sur un intervalle</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Identifier la continuité sur un intervalle.</p>
+      <p>On considère ci-dessous la courbe d'une fonction $f$ définie sur l'intervalle $[1\,;4]$.</p>
+      <figure class="fig">
+        <img src="assets/cours/fig-act5.png" alt="Courbe d'une fonction f définie sur l'intervalle [1 ; 4], présentant une discontinuité en x = 2.">
+        <figcaption>Courbe de $f$ sur $[1\,;4]$.</figcaption>
+      </figure>
+      <ol>
+        <li>Étudier la continuité de la fonction $f$ à droite et à gauche en $2$.</li>
+        <li>
+          <ol type="a">
+            <li>La fonction $f$ est-elle continue en tout point $a$ de l'intervalle $]1\,;4[$ ? Si oui, on dit que $f$ est continue sur $]1\,;4[$.</li>
+            <li>La fonction $f$ est-elle continue sur $[2\,;4[$, sur $]1\,;2]$ et sur $]1\,;3[$ ?</li>
+            <li>La fonction $f$ est-elle continue sur $[2\,;3]$ ? sur $[1\,;2]$ ?</li>
+          </ol>
+        </li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box definition">
+    <div class="box-title">■ Définition</div>
+    <div class="box-body">
+      <ol>
+        <li>Une fonction $f$ est continue sur un intervalle ouvert $I$ si elle est continue en tout point de $I$. En particulier : $f$ est continue sur $]a,b[$ si elle est continue en tout point de $]a,b[$.</li>
+        <li>Une fonction $f$ est continue sur $[a,b]$ si elle est continue sur $]a,b[$, continue à droite en $a$ et continue à gauche en $b$.</li>
+        <li>Une fonction $f$ est continue sur $[a,b[$ si elle est continue sur $]a,b[$ et continue à droite en $a$.</li>
+        <li>Une fonction $f$ est continue sur $]a,b]$ si elle est continue sur $]a,b[$ et continue à gauche en $b$.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <ol>
+        <li>Toute fonction polynomiale $P$ est continue sur $\R$ : pour tout $x_0\in\R$, $\displaystyle\lim_{x\to x_0}P(x)=P(x_0)$.</li>
+        <li>Toute fonction rationnelle est continue sur son ensemble de définition.</li>
+        <li>Les fonctions $x\mapsto\sin x$ et $x\mapsto\cos x$ sont continues sur $\R$.</li>
+        <li>La fonction $x\mapsto\tan x$ est continue sur $\R\setminus\left\{\dfrac{\pi}{2}+k\pi,\; k\in\Z\right\}$.</li>
+        <li>La fonction $x\mapsto\dfrac{1}{x}$ est continue sur $\R^*$.</li>
+        <li>La fonction $x\mapsto\sqrt{x}$ est continue sur $\R_+$.</li>
+        <li>La fonction valeur absolue $x\mapsto|x|$ est continue sur $\R$.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction définie sur $\R$ par :</p>
+      <div class="formula">$$f(x)=\begin{cases}x^2+2x+3 &amp; \text{si } x\geq 0\\[6pt] \dfrac{\sin(2x)}{x} &amp; \text{si } x&lt;0\end{cases}$$</div>
+      <p>Étudier la continuité de la fonction $f$ sur $\R$.</p>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s14"><span class="num">1.4</span>Opérations sur les fonctions continues</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 6 – Découper une fonction en fonctions de référence</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir les règles de stabilité de la continuité.</p>
+      <p>On considère la fonction $h$ définie par $h(x)=\dfrac{3x^3+2x+\cos x}{\sqrt{x+4}}$.</p>
+      <ol>
+        <li>Décomposer $h$ à l'aide de fonctions de référence ($x\mapsto x^3$, $x\mapsto\cos x$, $x\mapsto\sqrt{x}$, …).</li>
+        <li>Sur quel ensemble chacune de ces fonctions est-elle continue ?</li>
+        <li>En déduire l'ensemble sur lequel $h$ est continue, sans calcul de limite.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Soient $f$ et $g$ deux fonctions continues sur un intervalle $I$ et $k$ un nombre réel. Alors :</p>
+      <ol>
+        <li>les fonctions $f+g$, $k\cdot f$ et $f\cdot g$ sont continues sur $I$ ;</li>
+        <li>pour tout $n\in\N^*$, la fonction $f^n:x\mapsto (f(x))^n$ est continue sur $I$ ;</li>
+        <li>si la fonction $g$ ne s'annule pas sur $I$, alors $\dfrac{1}{g}$ et $\dfrac{f}{g}$ sont continues sur $I$ ;</li>
+        <li>la fonction $|f|$ est continue sur $I$ ;</li>
+        <li>si $f$ est positive sur $I$, alors $\sqrt{f}$ est continue sur $I$.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <ol>
+        <li>Soit $f$ la fonction définie sur $\R$ par $f(x)=x^3+4x+\cos x$. Montrer que $f$ est continue sur $\R$.</li>
+        <li>Soit $g$ la fonction définie sur $\R_+$ par $g(x)=\sqrt{x}\,(x^4-3x+2)$. Montrer que $g$ est continue sur $\R_+$.</li>
+        <li>Soit $h$ la fonction définie sur $\R\setminus\{-2\}$ par $h(x)=\dfrac{5}{x+2}$. Montrer que $h$ est continue sur $\R\setminus\{-2\}$.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s15"><span class="num">1.5</span>Continuité de la composée de deux fonctions</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 7 – Continuité d'une composée</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir la continuité d'une composée.</p>
+      <p>Soit $f(x)=x^2-1$ et $g(x)=\sqrt{x}$.</p>
+      <ol>
+        <li>Déterminer l'ensemble de définition de $g\circ f$ (c'est-à-dire de $x\mapsto\sqrt{x^2-1}$).</li>
+        <li>Où la fonction $f$ est-elle continue ? Où la fonction $g$ est-elle continue ?</li>
+        <li>En déduire l'ensemble sur lequel $g\circ f$ est continue.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Soit $f$ une fonction définie sur un intervalle $I$ et $g$ une fonction définie sur un intervalle $J$ tel que $f(I)\subset J$, et soit $x_0$ un élément de $I$.</p>
+      <p>Si $f$ est continue au point $x_0$ et $g$ est continue au point $f(x_0)$, alors la fonction $g\circ f$ est continue au point $x_0$.</p>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Corollaire</div>
+    <div class="box-body">
+      <p>Si $f$ est continue sur un intervalle $I$ et $g$ est continue sur un intervalle $J$ tel que $f(I)\subset J$, alors la fonction $g\circ f$ est continue sur l'intervalle $I$.</p>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <ol>
+        <li>Soit $f$ la fonction définie par $f(x)=\sin(3x^2-2x+1)$. Montrer que $f$ est continue sur $\R$.</li>
+        <li>Soit $f$ la fonction définie par $f(x)=\sqrt{x+1}$. Étudier la continuité de $f$ sur $[-1,+\infty[$.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 8 – Montrer que $f$ est continue sur $I$</div>
+    <div class="box-body">
+      <p>Montrer que $f$ est continue sur $I$ dans chacun des cas suivants :</p>
+      <ol>
+        <li>$f(x)=\dfrac{\sqrt{2x-1}}{x^2+4}$ ; $I=\left[\dfrac{1}{2}\,;+\infty\right[$.</li>
+        <li>$f(x)=\dfrac{3x-2}{x^2+1}$ ; $I=\R$.</li>
+        <li>$f(x)=\dfrac{\sqrt{x-1}}{(x-2)^2}$ ; $I=[1\,;3]$.</li>
+        <li>$f(x)=\sqrt{x^2+2x+2}$ ; $I=\R$.</li>
+      </ol>
+      <div class="reponse tall">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPITRE 2 ================= -->
+  <h2 class="chapter" id="chap2"><span class="num">2.</span>Image d'un intervalle par une fonction continue</h2>
+
+  <h3 class="section-h" id="s21"><span class="num">2.1</span>Image d'un segment par une fonction continue</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 9 – Image d'un segment : tableau à compléter</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir l'image d'un segment $[a,b]$ par une fonction continue.</p>
+      <p>On considère ci-dessous la courbe d'une fonction $f$ définie sur l'intervalle $[-2\,;5]$.</p>
+      <figure class="fig">
+        <img src="assets/cours/fig-act9.png" alt="Courbe d'une fonction f définie sur l'intervalle [-2 ; 5], avec des extrema locaux.">
+        <figcaption>Courbe de $f$ sur $[-2\,;5]$.</figcaption>
+      </figure>
+      <p>Recopier et compléter le tableau suivant à l'aide du graphique :</p>
+      <table class="var-table">
+        <thead>
+          <tr>
+            <th>L'intervalle $I$</th>
+            <th>Monotonie de $f$</th>
+            <th>Image de $I$ par $f$</th>
+            <th>Valeur minimale de $f$ sur $I$</th>
+            <th>Valeur maximale de $f$ sur $I$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$[-2\,;-1]$</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>$[-1\,;2]$</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>$[2\,;4]$</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>$[4\,;5]$</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ol>
+        <li>Que peut-on dire de l'image d'un segment lorsque $f$ est croissante sur ce segment ? décroissante ?</li>
+        <li>Conjecturer l'image d'un segment $[a,b]$ par une fonction continue $f$.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box theoreme">
+    <div class="box-title">★ Théorème</div>
+    <div class="box-body">
+      <p>L'image d'un segment $[a,b]$ par une fonction continue est le segment $[m,M]$ où :</p>
+      <div class="formula">$$m=\min_{x\in[a,b]} f(x) \qquad\text{et}\qquad M=\max_{x\in[a,b]} f(x).$$</div>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction numérique définie sur $\R$ par $f(x)=x^2-4x+3$.</p>
+      <figure class="fig">
+        <img src="assets/cours/fig-exemple-x24x3.png" alt="Parabole représentant f(x) = x² − 4x + 3, avec minimum m = −1 atteint en x = 2 et maximum M = 3 sur [0 ; 4].">
+        <figcaption>Graphe de $f(x)=x^2-4x+3$ &nbsp;($m=-1$, $M=3$).</figcaption>
+      </figure>
+      <p>À partir du graphe de la fonction $f$, déterminer :</p>
+      <ul class="nolist">
+        <li>— $f([0,4])$</li>
+        <li>— $f(]0,2])$</li>
+        <li>— $f(]-\infty,2])$</li>
+        <li>— $f([3,+\infty[)$</li>
+        <li>— $f(\R)$</li>
+      </ul>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s22"><span class="num">2.2</span>Image d'un intervalle par une fonction continue et strictement monotone</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 10 – Images par une fonction affine (croissante / décroissante)</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir la règle de calcul de l'image d'un intervalle quelconque.</p>
+      <p>On considère la fonction $f$ définie sur $[1\,;5]$ par $f(x)=2x+1$.</p>
+      <ol>
+        <li>Donner le sens de variation de $f$ puis calculer $f(1)$ et $f(5)$.</li>
+        <li>En déduire $f([1\,;5])$, puis $f(]1\,;5[)$ et $f([1\,;5[)$.</li>
+        <li>Reprendre la question 2 avec la fonction $g(x)=-2x+1$ sur $[1\,;5]$. Que remarque-t-on lorsque la fonction est décroissante ?</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Soit $f$ une fonction continue et strictement monotone sur un intervalle $I$. On a alors les résultats suivants :</p>
+      <table class="var-table">
+        <thead>
+          <tr>
+            <th>L'intervalle $I$</th>
+            <th>$f$ strictement croissante sur $I$</th>
+            <th>$f$ strictement décroissante sur $I$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$[a,b]$</td><td>$[f(a),f(b)]$</td><td>$[f(b),f(a)]$</td></tr>
+          <tr><td>$]a,b]$</td><td>$\left]\displaystyle\lim_{\substack{x\to a\\ x&gt;a}}f(x),\,f(b)\right]$</td><td>$\left[f(b),\,\displaystyle\lim_{\substack{x\to a\\ x&gt;a}}f(x)\right[$</td></tr>
+          <tr><td>$[a,b[$</td><td>$\left[f(a),\,\displaystyle\lim_{\substack{x\to b\\ x&lt;b}}f(x)\right[$</td><td>$\left]\displaystyle\lim_{\substack{x\to b\\ x&lt;b}}f(x),\,f(a)\right]$</td></tr>
+          <tr><td>$]a,b[$</td><td>$\left]\displaystyle\lim_{\substack{x\to a\\ x&gt;a}}f(x),\,\displaystyle\lim_{\substack{x\to b\\ x&lt;b}}f(x)\right[$</td><td>$\left]\displaystyle\lim_{\substack{x\to b\\ x&lt;b}}f(x),\,\displaystyle\lim_{\substack{x\to a\\ x&gt;a}}f(x)\right[$</td></tr>
+          <tr><td>$[a,+\infty[$</td><td>$\left[f(a),\,\displaystyle\lim_{x\to+\infty}f(x)\right[$</td><td>$\left]\displaystyle\lim_{x\to+\infty}f(x),\,f(a)\right]$</td></tr>
+          <tr><td>$]a,+\infty[$</td><td>$\left]\displaystyle\lim_{\substack{x\to a\\ x&gt;a}}f(x),\,\displaystyle\lim_{x\to+\infty}f(x)\right[$</td><td>$\left]\displaystyle\lim_{x\to+\infty}f(x),\,\displaystyle\lim_{\substack{x\to a\\ x&gt;a}}f(x)\right[$</td></tr>
+          <tr><td>$]-\infty,a]$</td><td>$\left]\displaystyle\lim_{x\to-\infty}f(x),\,f(a)\right]$</td><td>$\left[f(a),\,\displaystyle\lim_{x\to-\infty}f(x)\right[$</td></tr>
+          <tr><td>$]-\infty,a[$</td><td>$\left]\displaystyle\lim_{x\to-\infty}f(x),\,\displaystyle\lim_{\substack{x\to a\\ x&lt;a}}f(x)\right[$</td><td>$\left]\displaystyle\lim_{\substack{x\to a\\ x&lt;a}}f(x),\,\displaystyle\lim_{x\to-\infty}f(x)\right[$</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>On considère la fonction numérique $f$ définie par $f(x)=\dfrac{3x-1}{x+2}$.</p>
+      <p>On a $D_f=]-\infty,-2[\,\cup\,]-2,+\infty[$ et $\begin{vmatrix}3 &amp; -1\\ 1 &amp; 2\end{vmatrix}=6+1=7&gt;0$ : la fonction $f$ est donc continue et strictement croissante sur chacun des intervalles $]-\infty,-2[$ et $]-2,+\infty[$. Déterminer :</p>
+      <ul class="nolist">
+        <li>— $f([0,1])$</li>
+        <li>— $f([-3,-2[)$</li>
+        <li>— $f(]-2,1])$</li>
+        <li>— $f([3,+\infty[)$</li>
+      </ul>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 11 – Images avec $f(x)=\dfrac{x^2-4}{x-1}$</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction numérique définie par $f(x)=\dfrac{x^2-4}{x-1}$.</p>
+      <ol>
+        <li>Déterminer $D_f$, l'ensemble de définition de $f$.</li>
+        <li>Étudier la monotonie de $f$ sur $D_f$.</li>
+        <li>Déterminer l'image de chacun des intervalles suivants :
+          <ul class="nolist">
+            <li>— $I_1=]-\infty,1]$</li>
+            <li>— $I_2=]1,3]$</li>
+            <li>— $I_3=[2,4]$</li>
+            <li>— $I_4=[0,+\infty[$</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="reponse tall">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPITRE 3 ================= -->
+  <h2 class="chapter" id="chap3"><span class="num">3.</span>Théorème des valeurs intermédiaires (TVI)</h2>
+
+  <h3 class="section-h" id="s31"><span class="num">3.1</span>Théorème des valeurs intermédiaires</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 12 – Découvrir le théorème des valeurs intermédiaires</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir le théorème des valeurs intermédiaires.</p>
+      <p>Soit $g$ la fonction définie sur $[0\,;1]$ par $g(x)=x^3-3x+1$.</p>
+      <ol>
+        <li>Calculer $g(0)$ et $g(1)$.</li>
+        <li>Peut-on affirmer que l'équation $g(x)=0$ admet (au moins) une solution dans $[0\,;1]$ ? Justifier la réponse par un raisonnement graphique (« la courbe traverse la droite des abscisses »).</li>
+        <li>Que se passerait-il si la fonction présentait un saut ? La propriété reste-t-elle vraie ?</li>
+        <li>Généraliser : si $f$ est continue sur $[a,b]$ et si $k$ est compris entre $f(a)$ et $f(b)$, que peut-on affirmer ?</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box theoreme">
+    <div class="box-title">★ Théorème des valeurs intermédiaires</div>
+    <div class="box-body">
+      <p>On considère une fonction $f$ définie et continue sur un intervalle $[a,b]$.</p>
+      <p>Pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet au moins une solution $c$ dans l'intervalle $[a,b]$ : c'est-à-dire qu'il existe $c\in[a,b]$ tel que $f(c)=k$.</p>
+      <figure class="fig">
+        <img src="assets/cours/fig-tvi.png" alt="Illustration du théorème des valeurs intermédiaires : la courbe de f coupe la droite horizontale y = k en un point d'abscisse c.">
+        <figcaption>Interprétation graphique du T.V.I. : la droite $y=k$ coupe la courbe en $x=c$.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction définie sur $\left[0,\dfrac{\pi}{2}\right]$ par $f(x)=x+\sin x$.</p>
+      <p>Montrer que l'équation $x+\sin x=2$ admet au moins une solution sur l'intervalle $\left[0,\dfrac{\pi}{2}\right]$.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s32"><span class="num">3.2</span>Corollaire et unicité de la solution</h3>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Corollaire</div>
+    <div class="box-body">
+      <p>Si la fonction $f$ est continue sur $[a,b]$ et si $f(a)\times f(b)&lt;0$, alors l'équation $f(x)=0$ admet au moins une solution dans l'intervalle $[a,b]$.</p>
+      <p>Si de plus la fonction $f$ est strictement monotone sur $[a,b]$, alors cette solution est <strong>unique</strong>.</p>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Montrer que l'équation $\sqrt{x}-x^2+3x-2=0$ admet au moins une solution dans l'intervalle $]0,1[$.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 13 – Unicité de la solution de $\cos x-x+1=0$</div>
+    <div class="box-body">
+      <p>Montrer que l'équation $\cos x-x+1=0$ admet une unique solution dans l'intervalle $\left]0,\dfrac{\pi}{2}\right[$.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s33"><span class="num">3.3</span>Principe de la méthode de dichotomie</h3>
+
+  <div class="box methode">
+    <div class="box-title">✦ Principe</div>
+    <div class="box-body">
+      <p>Soit $f$ une fonction continue et strictement monotone sur un intervalle $[a\,;b]$ telle que $f(a)\times f(b)&lt;0$.</p>
+      <p>L'équation $f(x)=0$ admet une unique solution $\alpha$ dans l'intervalle $[a\,;b]$.</p>
+      <p>Le but de la méthode est de trouver un encadrement de $\alpha$ d'amplitude aussi petite que l'on veut.</p>
+    </div>
+  </div>
+
+  <div class="box methode">
+    <div class="box-title">✦ Algorithme</div>
+    <div class="box-body">
+      <ol>
+        <li>On pose $I_0=[a\,;b]$ et $n=0$.</li>
+        <li>On calcule le milieu $m_0$ de $I_0$ : $m_0=\dfrac{a+b}{2}$.</li>
+        <li>On calcule $f(m_0)$.</li>
+        <li>Trois cas sont possibles :
+          <ol type="a">
+            <li>si $f(m_0)=0$, alors $\alpha=m_0$ : l'algorithme s'arrête ;</li>
+            <li>si $f(a)\times f(m_0)&lt;0$, alors $\alpha\in[a\,;m_0]$ : on pose $I_1=[a\,;m_0]$ ;</li>
+            <li>si $f(m_0)\times f(b)&lt;0$, alors $\alpha\in[m_0\,;b]$ : on pose $I_1=[m_0\,;b]$.</li>
+          </ol>
+        </li>
+        <li>On répète le même processus avec l'intervalle $I_1$ pour obtenir $I_2$, puis avec $I_2$ pour obtenir $I_3$, et ainsi de suite.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple (avec solution rédigée)</div>
+    <div class="box-body">
+      <ol>
+        <li>Montrer que l'équation $x^3+x-3=0$ admet une unique solution dans l'intervalle $[1\,;2]$.</li>
+        <li>Donner une valeur approchée de la solution de l'équation précédente à $0{,}25$ près.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="box solution">
+    <div class="box-title">✔ Solution</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction définie sur $\R$ par $f(x)=x^3+x-3$.</p>
+      <p>— $f$ est une fonction polynôme, donc elle est continue sur $\R$, et en particulier sur $[1\,;2]$.</p>
+      <p>— Calculons sa dérivée : $f'(x)=3x^2+1$. Pour tout $x\in\R$, $x^2\geq 0$ donc $3x^2+1&gt;0$ : par conséquent $f'(x)&gt;0$ sur $\R$. La fonction $f$ est donc strictement croissante sur $\R$, et en particulier sur $[1\,;2]$.</p>
+      <p>— Calculons les images des bornes :</p>
+      <div class="formula">$$f(1)=1^3+1-3=-1,\qquad f(2)=2^3+2-3=8+2-3=7.$$</div>
+      <p>On a $f(1)=-1&lt;0$ et $f(2)=7&gt;0$, donc $f(1)\times f(2)&lt;0$.</p>
+      <p>Puisque $f$ est continue et strictement monotone sur $[1\,;2]$ et que $f(1)\times f(2)&lt;0$, l'équation $f(x)=0$ admet une unique solution $\alpha$ dans l'intervalle $[1\,;2]$.</p>
+      <p><strong>2)</strong> On applique la méthode de dichotomie à $f(x)=x^3+x-3$ sur $[1\,;2]$. La précision demandée est de $0{,}25$ : on cherche donc un intervalle de longueur inférieure ou égale à $0{,}5$.</p>
+      <p>— <strong>Étape 1 :</strong> $I_0=[1\,;2]$. Le milieu est $m_0=\dfrac{1+2}{2}=1{,}5$.</p>
+      <div class="formula">$$f(1{,}5)=(1{,}5)^3+1{,}5-3=3{,}375+1{,}5-3=1{,}875&gt;0.$$</div>
+      <p>On a $f(1)&lt;0$ et $f(1{,}5)&gt;0$, donc $\alpha\in[1\,;1{,}5]$. On pose $I_1=[1\,;1{,}5]$ (longueur $0{,}5$).</p>
+      <p>— <strong>Étape 2 :</strong> $I_1=[1\,;1{,}5]$. Le milieu est $m_1=\dfrac{1+1{,}5}{2}=1{,}25$.</p>
+      <div class="formula">$$f(1{,}25)=(1{,}25)^3+1{,}25-3=1{,}953125+1{,}25-3=0{,}203125&gt;0.$$</div>
+      <p>On a $f(1)&lt;0$ et $f(1{,}25)&gt;0$, donc $\alpha\in[1\,;1{,}25]$. On pose $I_2=[1\,;1{,}25]$ (longueur $0{,}25$).</p>
+      <p>À ce stade, on a $\alpha\in[1\,;1{,}25]$. La longueur de l'intervalle est $0{,}25$ : toute valeur de cet intervalle est une approximation de $\alpha$ à $0{,}25$ près.</p>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction définie par $f(x)=x^3+2x^2+x-3$.</p>
+      <p>La fonction $f$ est continue et strictement croissante sur $[0\,;1]$ et on a $f(0)\times f(1)&lt;0$. Donc l'équation $f(x)=0$ admet une solution unique $\alpha$ telle que $0&lt;\alpha&lt;1$. Déterminer un encadrement de $\alpha$ de longueur $0{,}25$.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 14 – Dichotomie : encadrer $\alpha$ pour $x^3+2x-5=0$</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction définie sur $\R$ par $f(x)=x^3+2x-5$.</p>
+      <ol>
+        <li>Montrer que l'équation $f(x)=0$ admet une unique solution dans $\R$.</li>
+        <li>Vérifier que $1&lt;\alpha&lt;2$.</li>
+        <li>Déterminer un encadrement de $\alpha$ d'amplitude $0{,}25$.</li>
+        <li>Donner le signe de $f$ sur $\R$.</li>
+      </ol>
+      <div class="reponse tall">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPITRE 4 ================= -->
+  <h2 class="chapter" id="chap4"><span class="num">4.</span>Fonction réciproque d'une fonction continue et strictement monotone</h2>
+
+  <h3 class="section-h" id="s41"><span class="num">4.1</span>Théorème de la fonction réciproque</h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 15 – Découvrir la fonction réciproque</div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir la notion de fonction réciproque.</p>
+      <p>Soit $f$ la fonction définie sur $[0\,;2]$ par $f(x)=x^2$.</p>
+      <ol>
+        <li>Montrer que $f$ est continue et strictement croissante sur $[0\,;2]$.</li>
+        <li>Déterminer $f([0\,;2])$.</li>
+        <li>Pour chaque $y\in[0\,;4]$, combien y a-t-il de $x\in[0\,;2]$ tels que $f(x)=y$ ?</li>
+        <li>Décrire la fonction qui, à chaque $y$ de $[0\,;4]$, associe cet unique $x$ : c'est la fonction réciproque $f^{-1}$.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box theoreme">
+    <div class="box-title">★ Théorème</div>
+    <div class="box-body">
+      <p>Si $f$ est continue et strictement monotone sur un intervalle $I$ de $\R$, alors $f$ admet une fonction réciproque définie sur l'intervalle $f(I)$.</p>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Soit $f$ la fonction numérique définie sur $I=]-2,2[$ par $f(x)=\dfrac{3x}{4-x^2}$.</p>
+      <p>Montrer que $f$ admet une fonction réciproque $f^{-1}$ définie sur un ensemble $J$ à déterminer.</p>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s42"><span class="num">4.2</span>Propriétés de la fonction réciproque</h3>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Si $f$ est continue et strictement monotone sur un intervalle $I$ de $\R$ et si $f^{-1}$ est sa fonction réciproque, alors :</p>
+      <ul>
+        <li>$f^{-1}$ est continue sur l'intervalle $f(I)$ ;</li>
+        <li>$f^{-1}$ est strictement monotone sur l'intervalle $f(I)$ (de même monotonie que $f$ sur $I$) ;</li>
+        <li>les courbes de $f$ et de $f^{-1}$ sont symétriques par rapport à la droite d'équation $y=x$ dans un repère orthonormé.</li>
+      </ul>
+      <figure class="fig">
+        <img src="assets/cours/fig-recip.png" alt="Courbes de f et de f⁻¹ symétriques par rapport à la droite y = x.">
+        <figcaption>Symétrie des courbes de $f$ et $f^{-1}$ par rapport à $y=x$.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="box remarque">
+    <div class="box-title">▲ Remarque</div>
+    <div class="box-body">
+      <p>À remarquer que la symétrie des deux courbes concerne toutes leurs composantes : les sommets, les tangentes et demi-tangentes, etc.</p>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 16 – Réciproque de $f(x)=x^2-x+1$</div>
+    <div class="box-body">
+      <p>On considère la fonction $f$ définie sur $\left[\dfrac{1}{2},+\infty\right[$ par $f(x)=x^2-x+1$.</p>
+      <ol>
+        <li>Montrer que $f$ admet une fonction réciproque $f^{-1}$ définie sur un intervalle $J$ à déterminer.</li>
+        <li>Dresser le tableau de variation de la fonction $f^{-1}$.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 17 – Quatre fonctions réciproques à justifier</div>
+    <div class="box-body">
+      <p>Dans chacun des cas suivants, montrer que la fonction $f$ admet une fonction réciproque $f^{-1}$ définie sur un intervalle $J$ à déterminer.</p>
+      <ol>
+        <li>$f(x)=x^2-2x+5$ et $I=[1\,;+\infty[$.</li>
+        <li>$f(x)=4x-x^2$ et $I=]-\infty\,;2]$.</li>
+        <li>$f(x)=\sqrt{x^2-x}$ et $I=[1\,;+\infty[$.</li>
+        <li>$f(x)=\dfrac{x}{x^2+2}$ et $I=[0\,;\sqrt{2}]$.</li>
+      </ol>
+      <div class="reponse tall">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHAPITRE 5 ================= -->
+  <h2 class="chapter" id="chap5"><span class="num">5.</span>Racine n<sup>ième</sup> et puissance rationnelle</h2>
+
+  <h3 class="section-h" id="s51"><span class="num">5.1</span>Fonction racine n<sup>ième</sup></h3>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 18 – Découvrir la fonction racine n<sup>ième</sup></div>
+    <div class="box-body">
+      <p class="objectif">Objectif : Découvrir la fonction racine n<sup>ième</sup>.</p>
+      <ol>
+        <li>Résoudre l'équation $x^2=4$ dans $\R$.</li>
+        <li>Résoudre l'équation $x^3=8$ dans $\R$.</li>
+        <li>Résoudre l'équation $x^4=16$ dans $\R$.</li>
+        <li>Que remarquez-vous ? Conjecturer la forme des solutions d'une équation $x^n=a$ selon la parité de $n$.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box definition">
+    <div class="box-title">■ Définition</div>
+    <div class="box-body">
+      <p>Soit $n$ un élément de $\N^*$. La fonction $u:x\mapsto x^n$ est continue et strictement croissante sur $\R_+$ : elle admet donc une fonction réciproque $u^{-1}$ de $u(\R_+)=\R_+$ vers $\R_+$. Cette fonction réciproque $u^{-1}$ s'appelle la <strong>fonction racine n-ième</strong> et se note $\sqrt[n]{\cdot}$.</p>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Soit $n\in\N^*$.</p>
+      <ul>
+        <li>Pour tous $x$ et $y$ de $\R_+$ :
+          <div class="formula">$$\sqrt[n]{x}=y \iff y^n=x,\qquad \sqrt[n]{x}=\sqrt[n]{y}\iff x=y,\qquad \sqrt[n]{x}&lt;\sqrt[n]{y}\iff x&lt;y.$$</div>
+        </li>
+        <li>Pour tout $x\in\R_+$ :
+          <div class="formula">$$\sqrt[n]{x^n}=\left(\sqrt[n]{x}\right)^n=x.$$</div>
+        </li>
+        <li>La fonction $x\mapsto\sqrt[n]{x}$ est continue sur $\R_+$ et de plus $\displaystyle\lim_{x\to+\infty}\sqrt[n]{x}=+\infty$.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box remarque">
+    <div class="box-title">▲ Remarque</div>
+    <div class="box-body">
+      <p>Soit $a$ un réel non nul et $n\in\N^*\setminus\{1\}$. L'ensemble des solutions de l'équation $x^n=a$ dépend du signe de $a$ et de la parité de $n$ :</p>
+      <table class="var-table">
+        <thead>
+          <tr><th></th><th>$n$ pair</th><th>$n$ impair</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$a&gt;0$</td><td>$S=\left\{-\sqrt[n]{a},\;\sqrt[n]{a}\right\}$</td><td>$S=\left\{\sqrt[n]{a}\right\}$</td></tr>
+          <tr><td>$a&lt;0$</td><td>$S=\varnothing$</td><td>$S=\left\{-\sqrt[n]{|a|}\right\}$</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Résoudre dans $\R$ les équations suivantes :</p>
+      <ol>
+        <li>$(E_1):x^4=16$</li>
+        <li>$(E_2):(x-1)^5=32$</li>
+        <li>$(E_3):(3x-2)^4=81$</li>
+        <li>$(E_4):\sqrt[3]{2x+5}=3$</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Soit $a$ et $b$ deux réels, et $p$ et $n$ deux entiers naturels supérieurs ou égaux à $2$. On a alors :</p>
+      <div class="formula">$$\sqrt[n]{a}\times\sqrt[n]{b}=\sqrt[n]{a\times b},\qquad \sqrt[n]{\frac{1}{a}}=\frac{1}{\sqrt[n]{a}}\;(a\neq 0),\qquad \sqrt[n]{\frac{a}{b}}=\frac{\sqrt[n]{a}}{\sqrt[n]{b}}\;(b\neq 0),$$</div>
+      <div class="formula">$$\sqrt[np]{a^p}=\sqrt[n]{a},\qquad \sqrt[n]{\sqrt[p]{a}}=\sqrt[np]{a},\qquad \left(\sqrt[n]{a}\right)^p=\sqrt[n]{a^p}.$$</div>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <ol>
+        <li>Simplifier le nombre $A=\dfrac{\sqrt[3]{54}\times\sqrt[4]{16}}{\sqrt[6]{729}}$.</li>
+        <li>Comparer : $\sqrt[4]{5}\times\sqrt[5]{5}$ et $\sqrt[5]{3}\times\sqrt[3]{3}$.</li>
+      </ol>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-h" id="s52"><span class="num">5.2</span>Puissance rationnelle d'un nombre strictement positif</h3>
+
+  <div class="box definition">
+    <div class="box-title">■ Définition</div>
+    <div class="box-body">
+      <p>Soit $a$ un réel strictement positif et $r$ un nombre rationnel. On pose $r=\dfrac{p}{q}$ avec $p\in\Z$ et $q\in\N^*$.</p>
+      <p>Le nombre $a^r$ est le nombre $\sqrt[q]{a^p}$. Ce nombre est appelé la <strong>puissance rationnelle</strong> du nombre $a$ d'exposant $r$.</p>
+    </div>
+  </div>
+
+  <div class="box remarque">
+    <div class="box-title">▲ Remarque</div>
+    <div class="box-body">
+      <p>Soit $a$ un réel strictement positif et $n\in\N^*\setminus\{1\}$. On a :</p>
+      <div class="formula">$$\sqrt{a}=\sqrt[2]{a}=a^{1/2}\qquad\text{et}\qquad \sqrt[3]{a}=a^{1/3}.$$</div>
+      <p>De façon générale :</p>
+      <div class="formula">$$\sqrt[n]{a}=a^{1/n}.$$</div>
+    </div>
+  </div>
+
+  <div class="box propriete">
+    <div class="box-title">✔ Propriété</div>
+    <div class="box-body">
+      <p>Soit $a$ et $b$ deux réels strictement positifs, et $r$, $r'$ deux nombres rationnels. Alors :</p>
+      <div class="formula">$$a^r\times a^{r'}=a^{r+r'},\qquad (ab)^r=a^r b^r,\qquad \left(a^r\right)^{r'}=a^{rr'},$$</div>
+      <div class="formula">$$a^{-r}=\frac{1}{a^r},\qquad \left(\frac{a}{b}\right)^r=\frac{a^r}{b^r},\qquad \frac{a^r}{a^{r'}}=a^{r-r'}.$$</div>
+    </div>
+  </div>
+
+  <div class="box exemple">
+    <div class="box-title">▶ Exemple</div>
+    <div class="box-body">
+      <p>Simplifier le nombre :</p>
+      <div class="formula">$$A=\frac{\sqrt[3]{8}\times\sqrt[4]{81}\times\sqrt[6]{16}}{\sqrt[12]{65536}}.$$</div>
+      <div class="reponse">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box activite">
+    <div class="box-title">◆ Activité 19 – Simplifier des nombres (puissances rationnelles)</div>
+    <div class="box-body">
+      <p>Simplifier les nombres suivants :</p>
+      <ol>
+        <li>$A=\sqrt[5]{243}\times 3^2$</li>
+        <li>$B=\left(\dfrac{27}{8}\right)^{2/3}\times\left(\dfrac{16}{81}\right)^{3/4}$</li>
+        <li>$C=\sqrt[4]{\dfrac{125^{2/3}\times 625^{3/4}}{5^{1/2}}}$</li>
+      </ol>
+      <div class="reponse tall">
+        <span class="cible">Espace réponse</span>
+        <div class="lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cours-toolbar">
+    <button class="tool-btn" onclick="window.print()">🖨️ Imprimer le cours</button>
+    <a class="tool-btn" href="index.html" style="text-decoration:none;">← Retour à l'accueil</a>
+  </div>
+
+  <div class="up-link">
+    <a href="#chap1">↑ Haut de page</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Prof. EZZIRI YOUNESS &mdash; Ezziri.youness@gmail.com &mdash; WhatsApp : 0766708942</p>
+</footer>
+
+<script>
+// Typeset after load and keep the sticky nav in sync
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.cours-nav a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+    });
+  });
+});
+</script>
+</body>
+</html>
