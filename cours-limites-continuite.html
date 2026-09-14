@@ -525,6 +525,27 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
   .cours-nav a { font-size: 0.75rem; padding: 0.3rem 0.55rem; }
   .chapter { font-size: 1.05rem; }
 }
+
+/* ===== Applications & interactive corrections ===== */
+.box.application > .box-title { background: #d35400; }
+.box.application > .box-body { background: #fdf6f0; }
+.leg-application { background: #d35400; }
+.correction-bar {
+  margin-top: 0.9rem; padding-top: 0.7rem; border-top: 1px dashed var(--border);
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.correction-bar .lbl { font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+.box-body .solution {
+  margin-top: 0.7rem; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+}
+.box-body .solution > :first-child { margin-top: 0; }
+.box-body .solution > :last-child { margin-bottom: 0; }
+.box-body .solution .var-table { margin: 0.6rem 0; }
+@media print {
+  .correction-bar { display: none !important; }
+  .solution { display: block !important; }
+}
 </style>
 </head>
 <body>
@@ -557,6 +578,7 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
 
   <div class="legende">
     <span class="leg-activite">Activité de découverte</span>
+    <span class="leg-application">Application</span>
     <span class="leg-definition">Définition</span>
     <span class="leg-propriete">Propriété</span>
     <span class="leg-theoreme">Théorème / Méthode</span>
@@ -632,7 +654,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a1" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a1">
+<p><strong>1.</strong> Par lecture graphique : $\lim\limits_{x\to+\infty}f(x)=1{,}5$ ; $\lim\limits_{x\to-\infty}f(x)=1{,}5$ ; $\lim\limits_{x\to 1^-}f(x)=-\infty$ ; $\lim\limits_{x\to 1^+}f(x)=+\infty$.</p>
+<p><strong>2.a)</strong> $\lim\limits_{x\to-1^+}f(x)=1{,}5$ ; $\lim\limits_{x\to-1^-}f(x)=3$ et $f(-1)=3$.<br>
+<strong>2.b)</strong> Non : $\lim\limits_{x\to-1^-}f(x)\neq\lim\limits_{x\to-1^+}f(x)$ — la courbe présente un <em>saut</em> en $x=-1$, elle ne « passe pas sans lever le crayon ». Donc $f$ n'est pas continue en $-1$ (elle est seulement continue <em>à gauche</em> en $-1$, car $\lim\limits_{x\to-1^-}f(x)=f(-1)=3$).<br>
+<strong>2.c)</strong> $\lim\limits_{x\to 3}f(x)=2$ et $f(3)=2$, donc $\lim\limits_{x\to 3}f(x)=f(3)$ : $f$ est continue en $x_0=3$.</p>
+<p class="objectif">Valeurs lues sur le graphique (approximatives).</p>
+      </div>
+</div>
 
   <div class="box definition">
     <div class="box-title">■ Définition</div>
@@ -660,10 +694,20 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
       <div class="formula">$$f(x)=\begin{cases}\dfrac{\sqrt{x^2+4}-2}{x} &amp; \text{si } x\neq 0\\[6pt] 0 &amp; \text{si } x=0\end{cases}$$</div>
       <p>Étudier la continuité de $f$ au point $x_0=0$.</p>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex11" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex11">
+<p>$f(0)=0$. Pour $x\neq 0$ :
+$\dfrac{\sqrt{x^2+4}-2}{x}=\dfrac{\left(\sqrt{x^2+4}-2\right)\left(\sqrt{x^2+4}+2\right)}{x\left(\sqrt{x^2+4}+2\right)}=\dfrac{x^2}{x\left(\sqrt{x^2+4}+2\right)}=\dfrac{x}{\sqrt{x^2+4}+2}$.</p>
+<p>Donc $\lim\limits_{x\to 0}f(x)=\dfrac{0}{\sqrt4+2}=0=f(0)$. <strong>Conclusion :</strong> $f$ est continue en $0$.</p>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 2 – Étudier la continuité de $g$ en 3</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 1 – Étudier la continuité de $g$ en 3</div>
     <div class="box-body">
       <p>Soit $g$ la fonction numérique définie par :</p>
       <div class="formula">$$g(x)=\begin{cases}\dfrac{x^2-9}{x-3} &amp; \text{si } x\neq 3\\[6pt] 5 &amp; \text{si } x=3\end{cases}$$</div>
@@ -673,12 +717,21 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap1" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap1">
+<p>$g$ est définie en $3$ et $g(3)=5$. Pour $x\neq 3$ : $\dfrac{x^2-9}{x-3}=\dfrac{(x-3)(x+3)}{x-3}=x+3$, donc $\lim\limits_{x\to 3}g(x)=\lim\limits_{x\to 3}(x+3)=6$.</p>
+<p>Or $g(3)=5\neq 6=\lim\limits_{x\to 3}g(x)$. <strong>Conclusion :</strong> $g$ n'est pas continue en $x_0=3$ (la limite existe, mais elle diffère de la valeur de $g$ en $3$).</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s12"><span class="num">1.2</span>Continuité à droite – Continuité à gauche</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 3 – Continuité à droite, continuité à gauche</div>
+    <div class="box-title">◆ Activité 2 – Continuité à droite, continuité à gauche</div>
     <div class="box-body">
       <p class="objectif">Objectif : Comprendre la continuité unilatérale.</p>
       <p>On considère la fonction $f$ définie par :</p>
@@ -693,7 +746,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a2" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a2">
+<p><strong>1.</strong> $f(1)=1+2=3$.</p>
+<p><strong>2.</strong> $\lim\limits_{x\to 1^-}f(x)=\lim\limits_{x\to 1^-}(x+2)=3$ et $\lim\limits_{x\to 1^+}f(x)=\lim\limits_{x\to 1^+}x^2=1$.</p>
+<p><strong>3.</strong> $\lim\limits_{x\to 1^-}f(x)=3=f(1)$ : $f$ est continue <em>à gauche</em> en $1$.<br>
+$\lim\limits_{x\to 1^+}f(x)=1\neq f(1)$ : $f$ n'est pas continue <em>à droite</em> en $1$.<br>
+$f$ n'étant pas continue à droite en $1$, elle n'est pas continue en $1$.</p>
+      </div>
+</div>
 
   <div class="box definition">
     <div class="box-title">■ Définition</div>
@@ -728,10 +793,21 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
       <div class="formula">$$f(x)=\begin{cases}4-x^2 &amp; \text{si } x\leq 0\\[6pt] \dfrac{x^2-4}{2x+1} &amp; \text{si } x&gt;0\end{cases}$$</div>
       <p>Étudier la continuité à droite et à gauche de $f$ au point $x_0=0$.</p>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex12" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex12">
+<p>$f(0)=4-0^2=4$.</p>
+<p>$\lim\limits_{x\to 0^-}f(x)=\lim\limits_{x\to 0^-}(4-x^2)=4=f(0)$ : $f$ est continue <em>à gauche</em> en $0$.</p>
+<p>$\lim\limits_{x\to 0^+}f(x)=\lim\limits_{x\to 0^+}\dfrac{x^2-4}{2x+1}=\dfrac{-4}{1}=-4\neq f(0)$ : $f$ n'est pas continue à droite en $0$.</p>
+<p><strong>Conclusion :</strong> $f$ n'est pas continue en $0$.</p>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 4 – Étudier la continuité de $g$ en 4 (valeur absolue)</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 2 – Étudier la continuité de $g$ en 4 (valeur absolue)</div>
     <div class="box-body">
       <p>Soit $g$ la fonction numérique définie par :</p>
       <div class="formula">$$g(x)=\begin{cases}\dfrac{x^2-16}{|x-4|} &amp; \text{si } x\neq 4\\[6pt] 8 &amp; \text{si } x=4\end{cases}$$</div>
@@ -741,12 +817,23 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap2" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap2">
+<p>$g(4)=8$. Pour $x\neq 4$ : $|x-4|=x-4$ si $x>4$, et $|x-4|=4-x$ si $x<4$.</p>
+<p><strong>À droite :</strong> pour $x>4$, $\dfrac{x^2-16}{|x-4|}=\dfrac{(x-4)(x+4)}{x-4}=x+4$, donc $\lim\limits_{x\to 4^+}g(x)=8=g(4)$ : $g$ est <strong>continue à droite</strong> en $4$.</p>
+<p><strong>À gauche :</strong> pour $x<4$, $\dfrac{x^2-16}{|x-4|}=\dfrac{(x-4)(x+4)}{-(x-4)}=-(x+4)$, donc $\lim\limits_{x\to 4^-}g(x)=-8\neq g(4)$ : $g$ n'est pas continue à gauche en $4$.</p>
+<p><strong>Conclusion :</strong> $g$ n'est pas continue en $4$.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s13"><span class="num">1.3</span>Continuité sur un intervalle</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 5 – Continuité sur un intervalle</div>
+    <div class="box-title">◆ Activité 3 – Continuité sur un intervalle</div>
     <div class="box-body">
       <p class="objectif">Objectif : Identifier la continuité sur un intervalle.</p>
       <p>On considère ci-dessous la courbe d'une fonction $f$ définie sur l'intervalle $[1\,;4]$.</p>
@@ -769,7 +856,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a3" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a3">
+<p><strong>1.</strong> D'après le graphique, la branche de gauche n'aboutit pas à $f(2)$ : $\lim\limits_{x\to 2^-}f(x)\approx 2{,}6$, tandis que la branche de droite part du point plein : $\lim\limits_{x\to 2^+}f(x)=f(2)=1$. Les limites à droite et à gauche en $2$ sont différentes : $f$ est continue à droite en $2$, mais pas continue à gauche en $2$.</p>
+<p><strong>2.a)</strong> Non : $f$ n'est pas continue en tout point de $]1\,;4[$, puisqu'elle ne l'est pas en $2$.</p>
+<p><strong>2.b)</strong> $f$ est continue sur $[2\,;4[$ (elle est continue sur $]2\,;4[$ et continue à droite en $2$). En revanche $f$ n'est pas continue sur $]1\,;2]$ (car elle n'est pas continue à gauche en $2$), ni sur $]1\,;3[$ (cet intervalle contient le point $2$).</p>
+<p><strong>2.c)</strong> $f$ est continue sur $[2\,;3]$ ; elle ne l'est pas sur $[1\,;2]$.</p>
+<p class="objectif">Valeurs lues sur le graphique (approximatives).</p>
+      </div>
+</div>
 
   <div class="box definition">
     <div class="box-title">■ Définition</div>
@@ -805,12 +904,23 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
       <div class="formula">$$f(x)=\begin{cases}x^2+2x+3 &amp; \text{si } x\geq 0\\[6pt] \dfrac{\sin(2x)}{x} &amp; \text{si } x&lt;0\end{cases}$$</div>
       <p>Étudier la continuité de la fonction $f$ sur $\R$.</p>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex13" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex13">
+<p>Sur $]-\infty\,;0[$ : $f(x)=\dfrac{\sin(2x)}{x}=2\times\dfrac{\sin(2x)}{2x}\xrightarrow[x\to 0^-]{}2$.</p>
+<p>Sur $[0\,;+\infty[$ : $f(0)=3$ et $\lim\limits_{x\to 0^+}f(x)=0+0+3=3$.</p>
+<p>$\lim\limits_{x\to 0^+}f(x)=3=f(0)$ : $f$ est continue à droite en $0$. Mais $\lim\limits_{x\to 0^-}f(x)=2\neq f(0)$ : $f$ n'est pas continue à gauche en $0$.</p>
+<p><strong>Conclusion :</strong> $f$ n'est pas continue sur $\R$ ; elle est continue sur $]-\infty\,;0[$ et sur $[0\,;+\infty[$.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s14"><span class="num">1.4</span>Opérations sur les fonctions continues</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 6 – Découper une fonction en fonctions de référence</div>
+    <div class="box-title">◆ Activité 4 – Découper une fonction en fonctions de référence</div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir les règles de stabilité de la continuité.</p>
       <p>On considère la fonction $h$ définie par $h(x)=\dfrac{3x^3+2x+\cos x}{\sqrt{x+4}}$.</p>
@@ -824,7 +934,17 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a4" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a4">
+<p><strong>1.</strong> $h$ est le quotient de $N(x)=3x^3+2x+\cos x$ par $D(x)=\sqrt{x+4}$.</p>
+<p><strong>2.</strong> $x\mapsto x^3$ et $x\mapsto x$ sont des fonctions polynômes, donc continues sur $\R$ ; $x\mapsto\cos x$ est continue sur $\R$ : par somme, $N$ est continue sur $\R$. La fonction $x\mapsto\sqrt{x+4}$ est la composée de $x\mapsto x+4$ (continue sur $\R$) et de $x\mapsto\sqrt{x}$ (continue sur $\R_+$) : elle est continue sur $[-4\,;+\infty[$.</p>
+<p><strong>3.</strong> $h$ est continue sur tout ensemble où $D$ est définie et ne s'annule pas. Or $D(x)>0\iff x>-4$. Donc $h$ est continue sur $]-4\,;+\infty[$.</p>
+      </div>
+</div>
 
   <div class="box propriete">
     <div class="box-title">✔ Propriété</div>
@@ -849,12 +969,22 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <li>Soit $h$ la fonction définie sur $\R\setminus\{-2\}$ par $h(x)=\dfrac{5}{x+2}$. Montrer que $h$ est continue sur $\R\setminus\{-2\}$.</li>
       </ol>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex14" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex14">
+<p><strong>1.</strong> $x\mapsto x^3$ et $x\mapsto 4x$ sont des polynômes, $x\mapsto\cos x$ est continue sur $\R$ ; par somme, $f$ est continue sur $\R$.</p>
+<p><strong>2.</strong> $x\mapsto\sqrt{x}$ est continue sur $\R_+$ et $x\mapsto x^4-3x+2$ est un polynôme donc continu sur $\R$ ; par produit, $g$ est continue sur $\R_+$.</p>
+<p><strong>3.</strong> $x\mapsto x+2$ est continue et ne s'annule pas sur $\R\setminus\{-2\}$ : $x\mapsto\dfrac{1}{x+2}$ est continue sur $\R\setminus\{-2\}$, et par produit par $5$, $h$ est continue sur $\R\setminus\{-2\}$.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s15"><span class="num">1.5</span>Continuité de la composée de deux fonctions</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 7 – Continuité d'une composée</div>
+    <div class="box-title">◆ Activité 5 – Continuité d'une composée</div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir la continuité d'une composée.</p>
       <p>Soit $f(x)=x^2-1$ et $g(x)=\sqrt{x}$.</p>
@@ -868,7 +998,17 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a5" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a5">
+<p><strong>1.</strong> $x\in D_{g\circ f}\iff x^2-1\geq 0\iff x\leq -1$ ou $x\geq 1$. Donc $D_{g\circ f}=]-\infty\,;-1]\cup[1\,;+\infty[$.</p>
+<p><strong>2.</strong> $f:x\mapsto x^2-1$ est continue sur $\R$ ; $g:x\mapsto\sqrt{x}$ est continue sur $[0\,;+\infty[$.</p>
+<p><strong>3.</strong> Pour $x\in]-\infty\,;-1]\cup[1\,;+\infty[$ on a $f(x)\geq 0$, donc $f(x)\in[0\,;+\infty[$ et $g$ est continue en $f(x)$. Par composition, $g\circ f$ est continue sur $]-\infty\,;-1]\cup[1\,;+\infty[$.</p>
+      </div>
+</div>
 
   <div class="box propriete">
     <div class="box-title">✔ Propriété</div>
@@ -893,10 +1033,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <li>Soit $f$ la fonction définie par $f(x)=\sqrt{x+1}$. Étudier la continuité de $f$ sur $[-1,+\infty[$.</li>
       </ol>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex15" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex15">
+<p><strong>1.</strong> $u(x)=3x^2-2x+1$ est un polynôme, donc continu sur $\R$, et $u(\R)\subset\R$ ; $x\mapsto\sin x$ est continue sur $\R$. Par composition, $f=\sin\circ\,u$ est continue sur $\R$.</p>
+<p><strong>2.</strong> $u(x)=x+1$ est continue sur $[-1\,;+\infty[$ et $u([-1\,;+\infty[)=[0\,;+\infty[\subset\R_+$ ; $x\mapsto\sqrt{x}$ est continue sur $\R_+$. Par composition, $f$ est continue sur $[-1\,;+\infty[$.</p>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 8 – Montrer que $f$ est continue sur $I$</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 3 – Montrer que $f$ est continue sur $I$</div>
     <div class="box-body">
       <p>Montrer que $f$ est continue sur $I$ dans chacun des cas suivants :</p>
       <ol>
@@ -910,7 +1059,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap3" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap3">
+<p><strong>1.</strong> $x\mapsto 2x-1$ est continue sur $\left[\tfrac12\,;+\infty\right[$ et $2x-1\geq 0$ sur $I$ ; $x\mapsto\sqrt{x}$ est continue sur $\R_+$ : par composition $x\mapsto\sqrt{2x-1}$ est continue sur $I$. Le dénominateur $x^2+4$ est continu et ne s'annule pas sur $I$ ($x^2+4>0$ partout). Par quotient, $f$ est continue sur $I=\left[\tfrac12\,;+\infty\right[$.</p>
+<p><strong>2.</strong> $3x-2$ et $x^2+1$ sont des polynômes, donc continus sur $\R$ ; de plus $x^2+1\geq 1>0$ ne s'annule pas sur $\R$. Par quotient, $f$ est continue sur $I=\R$.</p>
+<p><strong>3.</strong> $x\mapsto\sqrt{x-1}$ est continue sur $[1\,;+\infty[$ (composée de $x-1$, continue, et de $\sqrt{\cdot}$, continue sur $\R_+$), donc sur $I=[1\,;3]$. Le dénominateur $(x-2)^2$ est continu mais <strong>s'annule en $x=2$</strong> : $f$ n'est pas définie en $2$. <em>Remarque : l'énoncé contient une coquille, car $2\in[1\,;3]$ ; en réalité $f$ est définie et continue sur $[1\,;2[\,\cup\,]2\,;3]$.</em></p>
+<p><strong>4.</strong> $x^2+2x+2=(x+1)^2+1\geq 1>0$ : la fonction $u(x)=x^2+2x+2$ est définie, continue et strictement positive sur $\R$. Par composition avec $x\mapsto\sqrt{x}$ (continue sur $\R_+$), $f$ est continue sur $I=\R$.</p>
+      </div>
+</div>
 
   <!-- ================= CHAPITRE 2 ================= -->
   <h2 class="chapter" id="chap2"><span class="num">2.</span>Image d'un intervalle par une fonction continue</h2>
@@ -918,7 +1078,7 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
   <h3 class="section-h" id="s21"><span class="num">2.1</span>Image d'un segment par une fonction continue</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 9 – Image d'un segment : tableau à compléter</div>
+    <div class="box-title">◆ Activité 6 – Image d'un segment : tableau à compléter</div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir l'image d'un segment $[a,b]$ par une fonction continue.</p>
       <p>On considère ci-dessous la courbe d'une fonction $f$ définie sur l'intervalle $[-2\,;5]$.</p>
@@ -953,7 +1113,25 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a6" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a6">
+<table class="var-table">
+<thead><tr><th>$I$</th><th>Monotonie de $f$</th><th>Image de $I$ par $f$</th><th>$f$ min sur $I$</th><th>$f$ max sur $I$</th></tr></thead>
+<tbody>
+<tr><td>$[-2\,;-1]$</td><td>croissante</td><td>$[1\,;3]$</td><td>$1$</td><td>$3$</td></tr>
+<tr><td>$[-1\,;2]$</td><td>décroissante</td><td>$[-1\,;3]$</td><td>$-1$</td><td>$3$</td></tr>
+<tr><td>$[2\,;4]$</td><td>décroissante puis croissante</td><td>$[-2\,;2]$</td><td>$-2$</td><td>$2$</td></tr>
+<tr><td>$[4\,;5]$</td><td>décroissante</td><td>$[0\,;2]$</td><td>$0$</td><td>$2$</td></tr>
+</tbody></table>
+<p><strong>1.</strong> Si $f$ est croissante sur $[a,b]$, l'image est $[f(a),f(b)]$ ; si $f$ est décroissante, l'image est $[f(b),f(a)]$.</p>
+<p><strong>2.</strong> Conjecture : l'image d'un segment $[a,b]$ par une fonction continue $f$ est le segment $[m,M]$, où $m$ et $M$ sont les valeurs minimale et maximale de $f$ sur $[a,b]$.</p>
+<p class="objectif">Valeurs lues sur le graphique (approximatives).</p>
+      </div>
+</div>
 
   <div class="box theoreme">
     <div class="box-title">★ Théorème</div>
@@ -984,12 +1162,27 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex21" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex21">
+<p>$f(x)=x^2-4x+3=(x-2)^2-1$ : $f$ décroît sur $]-\infty\,;2]$ de $+\infty$ à $-1$, puis croît sur $[2\,;+\infty[$ de $-1$ à $+\infty$. On lit $f(0)=3$, $f(2)=-1$, $f(3)=0$, $f(4)=3$.</p>
+<ul class="nolist">
+<li>— $f([0\,;4])=[-1\,;3]$</li>
+<li>— $f(]0\,;2])=[-1\,;3[$</li>
+<li>— $f(]-\infty\,;2])=[-1\,;+\infty[$</li>
+<li>— $f([3\,;+\infty[)=[0\,;+\infty[$</li>
+<li>— $f(\R)=[-1\,;+\infty[$</li>
+</ul>
+      </div>
+</div>
 
   <h3 class="section-h" id="s22"><span class="num">2.2</span>Image d'un intervalle par une fonction continue et strictement monotone</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 10 – Images par une fonction affine (croissante / décroissante)</div>
+    <div class="box-title">◆ Activité 7 – Images par une fonction affine (croissante / décroissante)</div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir la règle de calcul de l'image d'un intervalle quelconque.</p>
       <p>On considère la fonction $f$ définie sur $[1\,;5]$ par $f(x)=2x+1$.</p>
@@ -1003,7 +1196,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a7" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a7">
+<p><strong>1.</strong> $f(x)=2x+1$ est croissante sur $[1\,;5]$ ; $f(1)=3$ et $f(5)=11$.</p>
+<p><strong>2.</strong> $f([1\,;5])=[3\,;11]$ ; $f(]1\,;5[)=]3\,;11[$ ; $f([1\,;5[)=[3\,;11[$.</p>
+<p><strong>3.</strong> $g(x)=-2x+1$ est décroissante ; $g(1)=-1$ et $g(5)=-9$. Donc $g([1\,;5])=[-9\,;-1]$, $g(]1\,;5[)=]-9\,;-1[$ et $g([1\,;5[)=]-9\,;-1]$.<br>
+<em>Lorsque $f$ est décroissante, les bornes de l'image sont inversées : on écrit $f(b)$ puis $f(a)$.</em></p>
+      </div>
+</div>
 
   <div class="box propriete">
     <div class="box-title">✔ Propriété</div>
@@ -1047,10 +1251,24 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex22" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex22">
+<p>$f$ est continue et strictement croissante sur $]-\infty\,;-2[$ et sur $]-2\,;+\infty[$. On calcule $f(0)=-\dfrac12$, $f(1)=\dfrac23$, $f(-3)=\dfrac{-9-1}{-1}=10$, $f(3)=\dfrac{9-1}{5}=\dfrac85$, et $\lim\limits_{x\to-2^-}f(x)=+\infty$, $\lim\limits_{x\to-2^+}f(x)=-\infty$, $\lim\limits_{x\to+\infty}f(x)=3$.</p>
+<ul class="nolist">
+<li>— $f([0\,;1])=\left[-\dfrac12\,;\dfrac23\right]$</li>
+<li>— $f([-3\,;-2[)=[10\,;+\infty[$</li>
+<li>— $f(]-2\,;1])=\left]-\infty\,;\dfrac23\right]$</li>
+<li>— $f([3\,;+\infty[)=\left[\dfrac85\,;3\right[$</li>
+</ul>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 11 – Images avec $f(x)=\dfrac{x^2-4}{x-1}$</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 4 – Images avec $f(x)=\dfrac{x^2-4}{x-1}$</div>
     <div class="box-body">
       <p>Soit $f$ la fonction numérique définie par $f(x)=\dfrac{x^2-4}{x-1}$.</p>
       <ol>
@@ -1070,7 +1288,23 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap4" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap4">
+<p><strong>1.</strong> $f$ est définie lorsque $x-1\neq 0$, donc $D_f=\R\setminus\{1\}$.</p>
+<p><strong>2.</strong> $f(x)=\dfrac{x^2-4}{x-1}=x+1-\dfrac{3}{x-1}$, donc $f'(x)=1+\dfrac{3}{(x-1)^2}>0$ sur $D_f$. $f$ est strictement croissante sur $]-\infty\,;1[$ et sur $]1\,;+\infty[$.</p>
+<p><strong>3.</strong> <em>Attention : $f$ n'est pas définie en $1$ ; on considère donc $]-\infty\,;1[$ (l'énoncé écrit $]-\infty\,;1]$).</em></p>
+<ul class="nolist">
+<li>— $I_1=]-\infty\,;1[$ : $\lim\limits_{x\to-\infty}f(x)=-\infty$ et $\lim\limits_{x\to 1^-}f(x)=+\infty$, donc $f(I_1)=\R$.</li>
+<li>— $I_2=]1\,;3]$ : $\lim\limits_{x\to 1^+}f(x)=-\infty$ et $f(3)=\dfrac{9-4}{2}=\dfrac52$, donc $f(I_2)=\left]-\infty\,;\dfrac52\right]$.</li>
+<li>— $I_3=[2\,;4]$ : $f(2)=0$ et $f(4)=\dfrac{16-4}{3}=4$, donc $f(I_3)=[0\,;4]$.</li>
+<li>— $I_4=[0\,;+\infty[$ : sur $[0\,;1[$, $f$ décroît de $f(0)=4$ vers $-\infty$ ; sur $]1\,;+\infty[$, $f$ croît de $-\infty$ vers $+\infty$. Donc $f(I_4)=\R$.</li>
+</ul>
+      </div>
+</div>
 
   <!-- ================= CHAPITRE 3 ================= -->
   <h2 class="chapter" id="chap3"><span class="num">3.</span>Théorème des valeurs intermédiaires (TVI)</h2>
@@ -1078,7 +1312,7 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
   <h3 class="section-h" id="s31"><span class="num">3.1</span>Théorème des valeurs intermédiaires</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 12 – Découvrir le théorème des valeurs intermédiaires</div>
+    <div class="box-title">◆ Activité 8 – Découvrir le théorème des valeurs intermédiaires</div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir le théorème des valeurs intermédiaires.</p>
       <p>Soit $g$ la fonction définie sur $[0\,;1]$ par $g(x)=x^3-3x+1$.</p>
@@ -1093,7 +1327,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a8" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a8">
+<p><strong>1.</strong> $g(0)=1$ et $g(1)=1-3+1=-1$.</p>
+<p><strong>2.</strong> Oui. $g$ est continue sur $[0\,;1]$ et $0$ est compris entre $g(1)=-1$ et $g(0)=1$ (on a même $g(0)\times g(1)<0$). Graphiquement, la courbe traverse la droite des abscisses : l'équation $g(x)=0$ admet au moins une solution dans $[0\,;1]$.</p>
+<p><strong>3.</strong> Si la fonction présentait un saut, la propriété pourrait être fausse : la courbe pourrait « sauter » l'axe des abscisses sans le couper. Par exemple, pour $f(x)=-1$ sur $[0\,;0{,}5[$ et $f(x)=1$ sur $[0{,}5\,;1]$, on a $f(0)&lt;0&lt;f(1)$ mais l'équation $f(x)=0$ n'a aucune solution. La continuité est donc indispensable.</p>
+<p><strong>4.</strong> Généralisation (T.V.I.) : si $f$ est continue sur $[a,b]$ et si $k$ est compris entre $f(a)$ et $f(b)$, alors l'équation $f(x)=k$ admet au moins une solution dans $[a,b]$.</p>
+      </div>
+</div>
 
   <div class="box theoreme">
     <div class="box-title">★ Théorème des valeurs intermédiaires</div>
@@ -1117,7 +1362,16 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex31" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex31">
+<p>$f(x)=x+\sin x$ est continue sur $\left[0\,;\dfrac{\pi}{2}\right]$ (somme de deux fonctions continues). $f(0)=0$ et $f\!\left(\dfrac{\pi}{2}\right)=\dfrac{\pi}{2}+1$.</p>
+<p>$2$ est compris entre $0$ et $\dfrac{\pi}{2}+1$ (car $0<2<\dfrac{\pi}{2}+1$). D'après le théorème des valeurs intermédiaires, l'équation $x+\sin x=2$ admet au moins une solution dans $\left[0\,;\dfrac{\pi}{2}\right]$.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s32"><span class="num">3.2</span>Corollaire et unicité de la solution</h3>
 
@@ -1138,10 +1392,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex32" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex32">
+<p>Soit $h(x)=\sqrt{x}-x^2+3x-2$, continue sur $[0\,;1]$ ($\sqrt{\cdot}$ est continue sur $\R_+$ et $x\mapsto-x^2+3x-2$ est un polynôme).</p>
+<p>$h(0)=-2<0$ et $h(1)=1-1+3-2=1>0$, donc $h(0)\times h(1)<0$. D'après le corollaire, l'équation $h(x)=0$ admet au moins une solution dans $[0\,;1]$ ; comme $h(0)\neq 0$ et $h(1)\neq 0$, cette solution appartient à $]0\,;1[$.</p>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 13 – Unicité de la solution de $\cos x-x+1=0$</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 5 – Unicité de la solution de $\cos x-x+1=0$</div>
     <div class="box-body">
       <p>Montrer que l'équation $\cos x-x+1=0$ admet une unique solution dans l'intervalle $\left]0,\dfrac{\pi}{2}\right[$.</p>
       <div class="reponse">
@@ -1149,7 +1412,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap5" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap5">
+<p>Soit $\varphi(x)=\cos x-x+1$, continue sur $\left]0\,;\dfrac{\pi}{2}\right[$ (et même sur $\left[0\,;\dfrac{\pi}{2}\right]$).</p>
+<p>$\varphi(0)=\cos 0-0+1=2>0$ et $\varphi\!\left(\dfrac{\pi}{2}\right)=0-\dfrac{\pi}{2}+1=1-\dfrac{\pi}{2}<0$ (car $\pi>2$).</p>
+<p>Comme $\varphi$ est continue sur $\left[0\,;\dfrac{\pi}{2}\right]$ et $\varphi(0)\times\varphi\!\left(\dfrac{\pi}{2}\right)<0$, l'équation $\cos x-x+1=0$ admet au moins une solution dans $\left]0\,;\dfrac{\pi}{2}\right[$.</p>
+<p>De plus, pour $x\in\left]0\,;\dfrac{\pi}{2}\right[$ : $\varphi'(x)=-\sin x-1<0$ (car $\sin x>0$), donc $\varphi$ est strictement décroissante : cette solution est <strong>unique</strong>.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s33"><span class="num">3.3</span>Principe de la méthode de dichotomie</h3>
 
@@ -1222,10 +1496,20 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex33b" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex33b">
+<p>$f(x)=x^3+2x^2+x-3$ : $f'(x)=3x^2+4x+1=(3x+1)(x+1)>0$ sur $[0\,;1]$, donc $f$ est strictement croissante. $f(0)=-3<0$ et $f(1)=1>0$ : la solution $\alpha$ existe et est unique.</p>
+<p>Dichotomie sur $[0\,;1]$ : $m_0=0{,}5$ et $f(0{,}5)=0{,}125+0{,}5+0{,}5-3=-1{,}875<0$, donc $\alpha\in[0{,}5\,;1]$. Puis $m_1=0{,}75$ et $f(0{,}75)=0{,}421875+1{,}125+0{,}75-3=-0{,}703125<0$, donc $\alpha\in[0{,}75\,;1]$.<br>
+Encadrement d'amplitude $0{,}25$ : $0{,}75<\alpha<1$.</p>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 14 – Dichotomie : encadrer $\alpha$ pour $x^3+2x-5=0$</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 6 – Dichotomie : encadrer $\alpha$ pour $x^3+2x-5=0$</div>
     <div class="box-body">
       <p>Soit $f$ la fonction définie sur $\R$ par $f(x)=x^3+2x-5$.</p>
       <ol>
@@ -1239,7 +1523,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap6" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap6">
+<p><strong>1.</strong> $f(x)=x^3+2x-5$ est un polynôme, donc continu sur $\R$ ; $f'(x)=3x^2+2>0$ sur $\R$, donc $f$ est strictement croissante sur $\R$. Comme $\lim\limits_{x\to-\infty}f(x)=-\infty$ et $\lim\limits_{x\to+\infty}f(x)=+\infty$, l'équation $f(x)=0$ admet une <strong>unique</strong> solution $\alpha$ dans $\R$.</p>
+<p><strong>2.</strong> $f(1)=1+2-5=-2<0$ et $f(2)=8+4-5=7>0$ : puisque $f$ est continue et strictement croissante, on en déduit $1<\alpha<2$.</p>
+<p><strong>3.</strong> Dichotomie sur $[1\,;2]$ : $m_0=1{,}5$ et $f(1{,}5)=3{,}375+3-5=1{,}375>0$, donc $\alpha\in[1\,;1{,}5]$. Puis $m_1=1{,}25$ et $f(1{,}25)=1{,}953125+2{,}5-5=-0{,}546875<0$, donc $\alpha\in[1{,}25\,;1{,}5]$.<br>
+Encadrement d'amplitude $0{,}25$ : $1{,}25<\alpha<1{,}5$.</p>
+<p><strong>4.</strong> $f$ étant strictement croissante et $f(\alpha)=0$ : $f(x)<0$ pour $x<\alpha$, $f(x)=0$ pour $x=\alpha$, et $f(x)>0$ pour $x>\alpha$.</p>
+      </div>
+</div>
 
   <!-- ================= CHAPITRE 4 ================= -->
   <h2 class="chapter" id="chap4"><span class="num">4.</span>Fonction réciproque d'une fonction continue et strictement monotone</h2>
@@ -1247,7 +1543,7 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
   <h3 class="section-h" id="s41"><span class="num">4.1</span>Théorème de la fonction réciproque</h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 15 – Découvrir la fonction réciproque</div>
+    <div class="box-title">◆ Activité 9 – Découvrir la fonction réciproque</div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir la notion de fonction réciproque.</p>
       <p>Soit $f$ la fonction définie sur $[0\,;2]$ par $f(x)=x^2$.</p>
@@ -1262,7 +1558,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a9" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a9">
+<p><strong>1.</strong> $f:x\mapsto x^2$ est une fonction polynôme, donc continue sur $\R$, en particulier sur $[0\,;2]$. Pour $x\in]0\,;2]$, $f'(x)=2x>0$, donc $f$ est strictement croissante sur $[0\,;2]$.</p>
+<p><strong>2.</strong> $f([0\,;2])=[f(0),f(2)]=[0\,;4]$.</p>
+<p><strong>3.</strong> Pour chaque $y\in[0\,;4]$, il existe un unique $x\in[0\,;2]$ tel que $f(x)=y$ : c'est $x=\sqrt{y}$.</p>
+<p><strong>4.</strong> La fonction réciproque est $f^{-1}:y\mapsto\sqrt{y}$, définie sur $[0\,;4]$ : c'est la fonction racine carrée.</p>
+      </div>
+</div>
 
   <div class="box theoreme">
     <div class="box-title">★ Théorème</div>
@@ -1281,7 +1588,17 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex41" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex41">
+<p>$f$ est définie et continue sur $]-2\,;2[$ (quotient de fonctions continues, dénominateur non nul).</p>
+<p>$f'(x)=\dfrac{3(4-x^2)-3x\times(-2x)}{(4-x^2)^2}=\dfrac{12-3x^2+6x^2}{(4-x^2)^2}=\dfrac{3(4+x^2)}{(4-x^2)^2}>0$ : $f$ est strictement croissante sur $]-2\,;2[$.</p>
+<p>$\lim\limits_{x\to-2^+}f(x)=-\infty$ et $\lim\limits_{x\to 2^-}f(x)=+\infty$ (le dénominateur tend vers $0^+$). Donc $f(]-2\,;2[)=\R$ : $f$ admet une fonction réciproque $f^{-1}$ définie sur $J=\R$.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s42"><span class="num">4.2</span>Propriétés de la fonction réciproque</h3>
 
@@ -1308,8 +1625,8 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
     </div>
   </div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 16 – Réciproque de $f(x)=x^2-x+1$</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 7 – Réciproque de $f(x)=x^2-x+1$</div>
     <div class="box-body">
       <p>On considère la fonction $f$ définie sur $\left[\dfrac{1}{2},+\infty\right[$ par $f(x)=x^2-x+1$.</p>
       <ol>
@@ -1321,10 +1638,24 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap7" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap7">
+<p><strong>1.</strong> $f$ est une fonction polynôme, donc continue sur $\R$ et en particulier sur $I=\left[\dfrac12\,;+\infty\right[$. Pour $x\in I$, $f'(x)=2x-1\geq 0$, et $f'(x)=0$ seulement en $x=\dfrac12$ : $f$ est strictement croissante sur $I$. D'après le théorème, $f$ admet une fonction réciproque $f^{-1}$ définie sur $J=f(I)$.</p>
+<p>$f\!\left(\dfrac12\right)=\dfrac14-\dfrac12+1=\dfrac34$ et $\lim\limits_{x\to+\infty}f(x)=+\infty$, donc $J=\left[\dfrac34\,;+\infty\right[$.</p>
+<p><strong>2.</strong> $f^{-1}$ a la même monotonie que $f$ : elle est strictement croissante sur $\left[\dfrac34\,;+\infty\right[$.</p>
+<table class="var-table">
+<thead><tr><th>$x$</th><th>$\dfrac34$</th><th></th><th>$+\infty$</th></tr></thead>
+<tbody><tr><td>$f^{-1}(x)$</td><td>$\dfrac12$</td><td>$\nearrow$</td><td>$+\infty$</td></tr></tbody>
+</table>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 17 – Quatre fonctions réciproques à justifier</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 8 – Quatre fonctions réciproques à justifier</div>
     <div class="box-body">
       <p>Dans chacun des cas suivants, montrer que la fonction $f$ admet une fonction réciproque $f^{-1}$ définie sur un intervalle $J$ à déterminer.</p>
       <ol>
@@ -1338,7 +1669,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap8" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap8">
+<p><strong>1.</strong> $f(x)=x^2-2x+5$ sur $I=[1\,;+\infty[$ : $f$ est continue et $f'(x)=2x-2\geq 0$ sur $I$ (nul seulement en $1$), donc $f$ est strictement croissante sur $I$. $f$ admet une réciproque définie sur $J=f(I)=[f(1)\,;+\infty[=[4\,;+\infty[$.</p>
+<p><strong>2.</strong> $f(x)=4x-x^2$ sur $I=]-\infty\,;2]$ : $f$ est continue et $f'(x)=4-2x\geq 0$ sur $I$ (nul en $2$), donc $f$ est strictement croissante sur $I$. $J=f(I)=\left]\lim\limits_{x\to-\infty}f(x)\,;f(2)\right]=]-\infty\,;4]$.</p>
+<p><strong>3.</strong> $f(x)=\sqrt{x^2-x}$ sur $I=[1\,;+\infty[$ : sur $I$, $x^2-x=x(x-1)\geq 0$, donc $f$ est définie ; elle est la composée de $u(x)=x^2-x$ (continue et strictement croissante sur $I$) et de $x\mapsto\sqrt{x}$ (continue et strictement croissante sur $\R_+$) : $f$ est continue et strictement croissante sur $I$. $J=f(I)=[f(1)\,;+\infty[=[0\,;+\infty[$.</p>
+<p><strong>4.</strong> $f(x)=\dfrac{x}{x^2+2}$ sur $I=[0\,;\sqrt2]$ : $f$ est continue (le dénominateur $x^2+2$ ne s'annule pas) et $f'(x)=\dfrac{2-x^2}{(x^2+2)^2}\geq 0$ sur $I$ (nul seulement en $\sqrt2$), donc $f$ est strictement croissante sur $I$. $J=f(I)=[f(0)\,;f(\sqrt2)]=\left[0\,;\dfrac{\sqrt2}{4}\right]$.</p>
+      </div>
+</div>
 
   <!-- ================= CHAPITRE 5 ================= -->
   <h2 class="chapter" id="chap5"><span class="num">5.</span>Racine n<sup>ième</sup> et puissance rationnelle</h2>
@@ -1346,7 +1688,7 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
   <h3 class="section-h" id="s51"><span class="num">5.1</span>Fonction racine n<sup>ième</sup></h3>
 
   <div class="box activite">
-    <div class="box-title">◆ Activité 18 – Découvrir la fonction racine n<sup>ième</sup></div>
+    <div class="box-title">◆ Activité 10 – Découvrir la fonction racine n<sup>ième</sup></div>
     <div class="box-body">
       <p class="objectif">Objectif : Découvrir la fonction racine n<sup>ième</sup>.</p>
       <ol>
@@ -1360,7 +1702,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-a10" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-a10">
+<p><strong>1.</strong> $x^2=4\iff x=2$ ou $x=-2$ : $S=\{-2\,;2\}$.</p>
+<p><strong>2.</strong> $x^3=8\iff x=2$ : $S=\{2\}$.</p>
+<p><strong>3.</strong> $x^4=16\iff x^4=2^4\iff x=2$ ou $x=-2$ : $S=\{-2\,;2\}$.</p>
+<p><strong>4.</strong> Pour $a>0$ : si $n$ est <em>pair</em>, l'équation $x^n=a$ admet deux solutions opposées $\pm\sqrt[n]{a}$ ; si $n$ est <em>impair</em>, elle admet une seule solution $\sqrt[n]{a}$.</p>
+      </div>
+</div>
 
   <div class="box definition">
     <div class="box-title">■ Définition</div>
@@ -1416,7 +1769,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex51a" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex51a">
+<p><strong>1.</strong> $x^4=16\iff x^4=2^4\iff x=2$ ou $x=-2$ : $S=\{-2\,;2\}$.</p>
+<p><strong>2.</strong> $(x-1)^5=32=2^5\iff x-1=2\iff x=3$ : $S=\{3\}$ ($5$ est impair).</p>
+<p><strong>3.</strong> $(3x-2)^4=81=3^4\iff 3x-2=3$ ou $3x-2=-3\iff x=\dfrac53$ ou $x=-\dfrac13$ : $S=\left\{-\dfrac13\,;\dfrac53\right\}$ ($4$ est pair).</p>
+<p><strong>4.</strong> $\sqrt[3]{2x+5}=3\iff 2x+5=27\iff x=11$ : $S=\{11\}$.</p>
+      </div>
+</div>
 
   <div class="box propriete">
     <div class="box-title">✔ Propriété</div>
@@ -1439,7 +1803,18 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex51b" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex51b">
+<p><strong>1.</strong> $54=2\times 3^3$ donc $\sqrt[3]{54}=3\sqrt[3]{2}$ ; $\sqrt[4]{16}=2$ ; $729=3^6$ donc $\sqrt[6]{729}=3$.<br>
+$A=\dfrac{3\sqrt[3]{2}\times 2}{3}=2\sqrt[3]{2}$.</p>
+<p><strong>2.</strong> $\sqrt[4]{5}\times\sqrt[5]{5}=5^{1/4}\times 5^{1/5}=5^{9/20}$ et $\sqrt[5]{3}\times\sqrt[3]{3}=3^{1/5}\times 3^{1/3}=3^{8/15}$.<br>
+On élève à la puissance $60$ : $\left(5^{9/20}\right)^{60}=5^{27}$ et $\left(3^{8/15}\right)^{60}=3^{32}$. Or $5^{27}>3^{32}$, donc $\sqrt[4]{5}\times\sqrt[5]{5}>\sqrt[5]{3}\times\sqrt[3]{3}$.</p>
+      </div>
+</div>
 
   <h3 class="section-h" id="s52"><span class="num">5.2</span>Puissance rationnelle d'un nombre strictement positif</h3>
 
@@ -1480,10 +1855,19 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ex52" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ex52">
+<p>$\sqrt[3]{8}=2$ ; $\sqrt[4]{81}=3$ ; $\sqrt[6]{16}=16^{1/6}=2^{4/6}=2^{2/3}$ ; et $65536=2^{16}$, donc $\sqrt[12]{65536}=2^{16/12}=2^{4/3}$.</p>
+<p>$A=\dfrac{2\times 3\times 2^{2/3}}{2^{4/3}}=6\times 2^{\frac23-\frac43}=6\times 2^{-2/3}=3\times 2^{1/3}=3\sqrt[3]{2}$.</p>
+      </div>
+</div>
 
-  <div class="box activite">
-    <div class="box-title">◆ Activité 19 – Simplifier des nombres (puissances rationnelles)</div>
+  <div class="box application">
+    <div class="box-title">◆ Application 9 – Simplifier des nombres (puissances rationnelles)</div>
     <div class="box-body">
       <p>Simplifier les nombres suivants :</p>
       <ol>
@@ -1496,11 +1880,24 @@ figure.fig figcaption { font-size: 0.82rem; color: var(--text-muted); margin-top
         <div class="lines"></div>
       </div>
     </div>
-  </div>
+  
+      <div class="correction-bar">
+        <button class="toggle-solution" type="button" data-target="sol-ap9" title="Afficher / masquer la correction">&#10067;</button>
+        <span class="lbl">Correction</span>
+      </div>
+      <div class="solution" id="sol-ap9">
+<p><strong>1.</strong> $A=\sqrt[5]{243}\times 3^2=\sqrt[5]{3^5}\times 9=3\times 9=27$.</p>
+<p><strong>2.</strong> $B=\left(\dfrac{27}{8}\right)^{2/3}\times\left(\dfrac{16}{81}\right)^{3/4}=\left(\left(\dfrac32\right)^3\right)^{2/3}\times\left(\left(\dfrac23\right)^4\right)^{3/4}=\left(\dfrac32\right)^2\times\left(\dfrac23\right)^3=\dfrac94\times\dfrac{8}{27}=\dfrac23$.</p>
+<p><strong>3.</strong> $125^{2/3}=(5^3)^{2/3}=5^2$ et $625^{3/4}=(5^4)^{3/4}=5^3$, donc $\dfrac{125^{2/3}\times625^{3/4}}{5^{1/2}}=\dfrac{5^2\times5^3}{5^{1/2}}=5^{2+3-\frac12}=5^{9/2}$.<br>
+D'où $C=\sqrt[4]{5^{9/2}}=\left(5^{9/2}\right)^{1/4}=5^{9/8}$.</p>
+      </div>
+</div>
 
   <div class="cours-toolbar">
-    <button class="tool-btn" onclick="window.print()">🖨️ Imprimer le cours</button>
-    <a class="tool-btn" href="index.html" style="text-decoration:none;">← Retour à l'accueil</a>
+    <button id="showAllBtn" class="tool-btn" type="button">✅ Tout afficher</button>
+    <button id="hideAllBtn" class="tool-btn" type="button">🚫 Tout masquer</button>
+    <button class="tool-btn" type="button" onclick="window.print()">🖨️ Imprimer</button>
+    <a class="tool-btn" href="index.html" style="text-decoration:none;">← Accueil</a>
   </div>
 
   <div class="up-link">
@@ -1520,6 +1917,48 @@ document.addEventListener('DOMContentLoaded', () => {
     a.addEventListener('click', () => {
       if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
     });
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const setState = (btn, open) => {
+    btn.classList.toggle('open', open);
+    btn.innerHTML = open ? '&#10004;' : '&#10067;';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  document.querySelectorAll('.toggle-solution').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sol = document.getElementById(btn.dataset.target);
+      if (!sol) return;
+      const open = !sol.classList.contains('show');
+      sol.classList.toggle('show', open);
+      setState(btn, open);
+      if (open && window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([sol]);
+    });
+  });
+  const showAll = document.getElementById('showAllBtn');
+  const hideAll = document.getElementById('hideAllBtn');
+  if (showAll) showAll.addEventListener('click', () => {
+    document.querySelectorAll('.solution').forEach(s => s.classList.add('show'));
+    document.querySelectorAll('.toggle-solution').forEach(b => setState(b, true));
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+  });
+  if (hideAll) hideAll.addEventListener('click', () => {
+    document.querySelectorAll('.solution').forEach(s => s.classList.remove('show'));
+    document.querySelectorAll('.toggle-solution').forEach(b => setState(b, false));
+  });
+  // keyboard shortcuts when not typing
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea')) return;
+    if (e.key === 'c' && !e.ctrlKey && !e.metaKey) {
+      const anyHidden = Array.from(document.querySelectorAll('.solution'))
+        .some(s => !s.classList.contains('show'));
+      document.querySelectorAll('.solution').forEach(s => s.classList.toggle('show', anyHidden));
+      document.querySelectorAll('.toggle-solution').forEach(b => setState(b, anyHidden));
+      if (anyHidden && window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+    }
   });
 });
 </script>
